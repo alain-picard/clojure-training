@@ -1,0 +1,72 @@
+* clojure-training
+
+A set of training materials prepared by Alain Picard for use in
+training new clojure engineers at Blue Ridge Global.
+
+* How to use this repo
+
+This repo will periodically be updated with the code developed in
+each lesson (when applicable).  Each lesson will be added in a
+file (or subdirectory) named =lesson-01=, =lesson-02= /etc./ (in the src subdir).
+
+* Material we plan to get through, eventually
+
+ - [X] how to get help
+ - [X] navigate sources
+ - [X] structural editing
+ - [X] using maps
+ - [X] gotchas with =conj=
+ - [ ] destructuring
+ - [ ] sequences, lazy seqs
+ - [ ] lexical vs dynamic scoping
+ - [ ] reduce, functional idioms
+ - [ ] tracing, debugging
+ - [ ] strings; regexes
+ - [ ] throw/catch
+ - [ ] multimethods
+ - [ ] vars, atoms, agents
+ - [ ] threads, futures, promises (concurrency primitives)
+ - [ ] i/o
+ - [ ] java interop
+ - [ ] finding and using libraries
+ - [ ] supply a list of recommended good libs.
+ - [ ] reader syntax
+ - [ ] macros, threading macros
+ - [ ] ring handlers, libraries
+ - [ ] core.async
+ - [ ] clojurescript
+ - [ ] reframe
+
+* Resources
+
+We are going to make extensive use of the following:
+
+ - The excellent online book: [[https://www.braveclojure.com/clojure-for-the-brave-and-true/][Clojure for the Brave and True]]
+ - The [[https://github.com/functional-koans/clojure-koans][clojure koans]]
+ - Many of the excellent at [[http://www.4clojure.com/problems][4clojure sample problems]]
+
+
+* Lesson Plans
+  - [[file:doc/lesson-01.org::*Introductory%20email][Lesson 1]]
+  - [[file:doc/lesson-02.org::*Lesson%20Goals][Lesson 2]]
+
+* Legalese
+
+Copyright © 2020 Alain Picard Consulting.  
+
+I wrote and assembled this for didactic purposes, and I'm perfectly
+happy for anyone to use this as they see fit.
+
+This program and the accompanying materials are made available under the
+terms of the Eclipse Public License 2.0 which is available at
+http://www.eclipse.org/legal/epl-2.0.
+
+This Source Code may also be made available under the following Secondary
+Licenses when the conditions for such availability set forth in the Eclipse
+Public License, v. 2.0 are satisfied: GNU General Public License as published by
+the Free Software Foundation, either version 2 of the License, or (at your
+option) any later version, with the GNU Classpath Exception which is available
+at https://www.gnu.org/software/classpath/license.html.
+
+
+

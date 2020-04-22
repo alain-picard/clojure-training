@@ -1,0 +1,75 @@
+* Lesson Goals
+
+ - [ ] destructuring
+ - [ ] sequences, lazy seqs
+ - [ ] lexical vs dynamic scoping
+ - [ ] reduce, functional idioms
+
+* Preparatory Material for Lesson 2
+
+Lesson goals: To further our study of the basics of the clojure
+language, deepen our familiarity with our tools, and get some
+practice looking around and writing some code ourself.
+
+    - Read chapters 4 and 5, and appendix A, of [[https://www.braveclojure.com/clojure-for-the-brave-and-true/][Brave and True]]
+    - Do koans from files 1-> 9, 11, 12, 15
+    - WRITE DOWN any questions you have!!! We will reserve time
+      to go over questions at the beginning of the lecture
+    - Practice finding reference material:
+      + "Show docstring of function"  [C-c C-d d] in emacs, 
+        in VS Code, just hover point over the symbol
+      + look at the clojure cheat sheet: https://clojure.org/api/cheatsheet
+        Try to get a feel for the functions available to manipulate
+        the immutable values we discussed.
+        Pay particular attention to the functions which manipulate maps.
+        Practice many of these functions to intuitively see what they
+        do; /e.g/ you find an interesting function in the cheatsheet
+        called =assoc-in=.  You see that it has a signature of the form:
+        =[m [k & ks] v]=.  Remember that =m= stands for map, =k= for key, =v= 
+        for value.  You try it!
+        #+begin_src clojure
+        (assoc-in {:foo 8} [:a :b :c] 99)
+        ;; =>  {:foo 8, :a {:b {:c 99}}}
+        #+end_src
+        Think about when such a function might be useful.  Why does it
+        exist?  Why did the designers add it to the language?
+
+        Alan Perlis once wrote:
+        #+begin_quote
+    It is better to have 100 functions operate on one data structure than 10 functions on 10 data structures. —Alan Perlis
+    #+end_quote
+        What do you think he meant?  Can you relate this quote to
+        Object oriented programming /vs./ the sort of functional programming
+        you're learning now?
+
+    - Jump to function definitions you don't understand.  Don't worry if
+      you can't understand their implementation yet; LOOK at the style and
+      structure of how the code is written.  Can you figure out what all
+      the parts are trying to do?  Look at the definitions of such basic
+      functions as =complement=, =constantly=, =identity=.  Could you have written
+      such functions?  Can you guess why they exist?
+
+    - Practice structural code editing (i.e. paredit mode in emacs)
+      In VS Code, right click the mouse and choose the "Command Palette"
+      menu entry, then restrict the search to those commands which
+      match the string "paredit".
+      Pay particular attention to and memorize the keybindings
+      of the following commands until they become natural:
+
+      + [C-M-f]	paredit-forward
+      + [C-M-b]	paredit-backward
+      + [C-M-u]	paredit-backward-up
+      + [C-M-p]	paredit-backward-down
+      + [C-M-n]	paredit-forward-up
+      + [C-M-d]	paredit-forward-down
+      + [C-M-k] kill-sexp
+
+      Study as many of the others as time allows to at least be
+      aware of their existence, even if you don't remember their
+      names or keybindings at this point.
+
+    - For those feeling brave, try to write a function
+      which solves this problem:  http://www.4clojure.com/problem/77
+      I will provide my solution to compare with you at the next lecture.
+
+See you all soon!

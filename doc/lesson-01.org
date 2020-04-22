@@ -1,0 +1,104 @@
+* Introductory email
+
+     #+begin_quote
+
+“Lisp is worth learning for the profound enlightenment experience you
+will have when you finally get it; that experience will make you a
+better programmer for the rest of your days, even if you never
+actually use Lisp itself a lot.” 
+
+      –Eric Raymond, “How to Become a Hacker”
+     #+end_quote
+
+
+ Requirements
+ ==============
+
+ We will be using clojure v 1.10, the latest version of =leiningen= and java 1.8
+ My system reports:
+: ➜  gojee_brg git:(master) java -version
+: openjdk version "1.8.0_242"
+: OpenJDK Runtime Environment (AdoptOpenJDK)(build 1.8.0_242-b08)
+: OpenJDK 64-Bit Server VM (AdoptOpenJDK)(build 25.242-b08, mixed mode)
+
+ You should be able to get that running on either Linux, Windows or Mac OS X.
+
+ In order to follow this training course (and, eventually, work for Gojee
+ developing clojure and clojurescript software), you will need a clojure development
+ environment.
+
+ Some programmers are fastidious about their choices of tooling (I am), others
+ tend to be agnostic.  I prefer to let each one of you make their choice in this
+ regards, so I shall list your options with (my perceived) assessment of each tool.
+
+ 1. emacs + cider
+    This is the "old school" way of editing lisp programs, and the one I use.
+    I have been using emacs daily since 1991.  It is insanely flexible and complete,
+    but hard to get started with.  Since emacs is written largely in a lisp (called
+    emacs lisp) it has extensive facilities for dealing with lisp programs and syntax.
+    You can customize it to the nth degree to behave exactly how you like it.
+
+    Plus side: if you choose this option, I'll be able to help you with any questions
+    you have with it, which is not true of the other choices, which I have only played
+    with to see what they're like.
+    There is also a chapter in [[https://www.braveclojure.com/clojure-for-the-brave-and-true/][Brave and True]] detailing the usage of emacs and installation
+    of the required plugins.
+
+  2. [[https://cursive-ide.com/][Cursive]] (an IntelliJ plugin)
+     If you're already a Java programmer, you probably know this one and either love
+     it or hate it.  If you love it, it's a good choice.
+
+     Down side: You'll need to purchase a license, is my
+     understanding, but you can start with the free version for the
+     training and Jack will buy you a license if you get the job.  :-)
+
+  3. Visual Studio code editor (VScode) with the =Calva= plugin.
+     This is the most "modern" option.  You install this Calva plugin and it seemed
+     to work out of the box.  It also seemed much snappier than IntelliJ
+
+  The state of clojure 2020 survey indicates that 45% of respondents use emacs,
+  30% use IntelliJ, and 10% use VS Code, so make of that what you will.
+
+  By all means feel free to try all 3 environments and see which one you like
+  best!  But have one of them ready for our first class together, please.
+  I expect you to have a running REPL before we start.
+
+ Our first lesson
+ ==================
+
+ I want you to:
+
+ - read Chapters 1 and 3 (and Chapter 2, if you choose to use emacs) of
+   the online book "Clojure for the brave an true".
+   In Chap 3, read up to (but not including) the "Pulling it all together" section
+
+ - git clone and install the [[https://github.com/functional-koans/clojure-koans][clojure koans]]
+   follow the instructions and make sure you can 
+   get "lein koan run" to work, proving their environment works.
+   Read the README of  [[https://github.com/functional-koans/clojure-koans][clojure koans]], and try to get the first 2 or 3 tests to pass
+   (they should be pretty obvious).
+
+ - see if you can bring up the Koans in the development environment of your choice.
+
+
+ I look forward to our first lesson!
+
+                     --Alain Picard
+
+* Lesson Plan
+ - [ ] Previous to the lesson, send them email about the lesson plan.
+ - [ ] They will have had to install java, clojure, an IDE (or emacs)
+ - [ ] We're going to start with =clojure=, and only get to =clojurescript= later.
+ - [ ] They should install the [[https://github.com/functional-koans/clojure-koans][clojure koans]]
+     I want them to to a git pull, follow the instructions and successfully
+     get "lein koan run" to work, proving their environment works.
+     Read the README of  [[https://github.com/functional-koans/clojure-koans][clojure koans]], and try to get the first 2 or 3 tests to pass
+     (they should be pretty obvious).
+ - [ ] They will have had to read Chapters 1 and 3 (and 2, if they choose emacs)
+       In Chap 3, read up to (but not including) the "Pulling it all together" section
+ - [ ] Review their installations; make sure they can launch a REPL in an editor
+ - [ ] write some trivial code; say, perhaps, the interview problems? :-P
+ - [ ] Show problems in [[file:work/training/lesson_01.clj][file:~/Consulting/clients/gojee/work/training/lesson_01.clj]]
+ - [ ] explain about paredit and structural editing.  Lisp forms are trees.
+ - [ ] indentation.  M-q or equivalent.  Lisp programmers don't "see" the parentheses.
+
