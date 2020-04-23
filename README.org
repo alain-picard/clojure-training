@@ -5,9 +5,35 @@ training new clojure engineers at Blue Ridge Global.
 
 * How to use this repo
 
+*PREPARING*
+
+Before each lesson, you /must/ come prepared by having
+completed the necessary reading in each of the [[Lesson Plans]].
+Make sure you keep an eye on this repo for new lesson plans,
+and I will email you all each time a new one is added.
+
+*DURING THE LESSONS*
+
 This repo will periodically be updated with the code developed in
-each lesson (when applicable).  Each lesson will be added in a
+each lesson (when applicable) so you can download and play with the
+examples I provide during the lessons.  Jack will also record the
+lessons and make the videos available to you all.
+After each lesson, the code will be added in a
 file (or subdirectory) named =lesson-01=, =lesson-02= /etc./ (in the src subdir).
+
+*AFTER THE LESSONS*
+
+You will have to *fork* this repo so you can submit your *assignment solutions*
+for review.
+
+At the end of the lesson, I will sometimes set assignments
+which I will detail in the [[Assignments]] section.  You should
+attempt to answer these, placing your answers in the file
+=/src/assignments/your_name//lesson_XX_answers.clj=.  When you
+can cleanly load your file into a repl, raise a *pull request* for
+me to review your code and merge it back into the main repo.  Thus,
+you'll be able to view your colleague's solutions after I merge your
+answers back into the main repo.
 
 * Material we plan to get through, eventually
 
@@ -23,11 +49,11 @@ file (or subdirectory) named =lesson-01=, =lesson-02= /etc./ (in the src subdir)
  - [ ] tracing, debugging
  - [ ] strings; regexes
  - [ ] throw/catch
- - [ ] multimethods
  - [ ] vars, atoms, agents
  - [ ] threads, futures, promises (concurrency primitives)
  - [ ] i/o
  - [ ] java interop
+ - [ ] multimethods
  - [ ] finding and using libraries
  - [ ] supply a list of recommended good libs.
  - [ ] reader syntax
@@ -45,10 +71,18 @@ We are going to make extensive use of the following:
  - The [[https://github.com/functional-koans/clojure-koans][clojure koans]]
  - Many of the excellent at [[http://www.4clojure.com/problems][4clojure sample problems]]
 
-
 * Lesson Plans
   - [[file:doc/lesson-01.org::*Introductory%20email][Lesson 1]]
   - [[file:doc/lesson-02.org::*Lesson%20Goals][Lesson 2]]
+
+* Assignments
+
+** Lesson 2
+
+   1. Write a function which solves this problem:
+      http://www.4clojure.com/problem/77
+   2. implement a version of =filter= using a loop form, then using reduce.
+   3. implement a version of =update-in=
 
 * Legalese
 
