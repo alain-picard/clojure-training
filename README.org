@@ -94,6 +94,14 @@ We are going to make extensive use of the following:
    4. Write a function which solves this problem:
       http://www.4clojure.com/problem/53
 
+** Lesson 3
+
+   1. Listen to the talk: [[https://www.infoq.com/presentations/Are-We-There-Yet-Rich-Hickey/][Are we there yet]]
+      Take notes!  Listen carefully!  Rich is a very deep thinker.
+      Pay particular attention to the analogy about the baseball game,
+      when he discusses how state evolves and should be modelled.
+
+
 * Legalese
 
 Copyright © 2020 Alain Picard Consulting.  
