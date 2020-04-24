@@ -42,15 +42,19 @@ answers back into the main repo.
  - [X] structural editing
  - [X] using maps
  - [X] gotchas with =conj=
- - [ ] destructuring
- - [ ] sequences, lazy seqs
- - [ ] lexical vs dynamic scoping
- - [ ] reduce, functional idioms
+ - [X] destructuring
+ - [X] sequences, lazy seqs
+ - [X] lexical vs dynamic scoping
+ - [X] reduce, functional idioms
  - [ ] tracing, debugging
- - [ ] strings; regexes
- - [ ] throw/catch
- - [ ] vars, atoms, agents
+ - [ ] writing docstrings
+ - [ ] Introduction to =leiningen=, dependency management,
+       and finding and using libraries in clojure.
  - [ ] threads, futures, promises (concurrency primitives)
+ - [ ] vars, atoms, refs, agents
+ - [ ] tracing, debugging
+ - [ ] throw/catch
+ - [ ] strings; regexes
  - [ ] i/o
  - [ ] java interop
  - [ ] multimethods
@@ -74,15 +78,29 @@ We are going to make extensive use of the following:
 * Lesson Plans
   - [[file:doc/lesson-01.org::*Introductory%20email][Lesson 1]]
   - [[file:doc/lesson-02.org::*Lesson%20Goals][Lesson 2]]
+  - [[file:doc/lesson-03.org::*Lesson%20Goals][Lesson 3]]
 
 * Assignments
 
 ** Lesson 2
+   These are the assignment problems following Lesson 2.
+   We will discuss your solutions and see Alain's solutions
+   at the beginning of [[file:doc/lesson-03.org::*Lesson%20Goals][Lesson 3]].
 
-   1. Write a function which solves this problem:
+   1. Implement your own version of =filter= using a loop form, then using reduce.
+   2. Implement your own version of =update-in=
+   3. Write a function which solves this problem:
       http://www.4clojure.com/problem/77
-   2. implement a version of =filter= using a loop form, then using reduce.
-   3. implement a version of =update-in=
+   4. Write a function which solves this problem:
+      http://www.4clojure.com/problem/53
+
+** Lesson 3
+
+   1. Listen to the talk: [[https://www.infoq.com/presentations/Are-We-There-Yet-Rich-Hickey/][Are we there yet]]
+      Take notes!  Listen carefully!  Rich is a very deep thinker.
+      Pay particular attention to the analogy about the baseball game,
+      when he discusses how state evolves and should be modelled.
+
 
 * Legalese
 

@@ -1,0 +1,46 @@
+* Lesson Goals
+
+ - [ ] Field questions and review assignment problems.
+ - [ ] tracing, debugging
+ - [ ] writing docstrings
+ - [ ] Introduction to =leiningen=, dependency management,
+       and finding and using libraries in clojure.
+
+* Preparatory Material for Lesson 3
+
+Lesson goals: This week we'll slow things down a bit and
+consolidate our knowledge, practice with it and learn the
+more "practical" and tooling aspects around clojure development.
+
+    - Attempt the [[file:~/Consulting/clients/gojee/work/clojure-training/README.org::*Lesson%202][problems assigned at the end of Lesson 2]]
+      Clone this repo and place your answers therein following
+      the instructions in the README file.  Raise a pull request
+      when you are done.
+
+    - You should now have already read chapters 1,3,4,5 of [[https://www.braveclojure.com/clojure-for-the-brave-and-true/][Brave and True]],
+      which constitutes the bulk of the basic syntax of the language.
+      This week, we will suspend pushing on to the more esoteric aspects
+      of the language and deepen our understanding of functional idioms,
+      and just outright get more practice with the language.
+
+    - If you have not completed the koans from files 1-> 9, 11, 12, 15,
+      *make sure you do so now*!
+
+    - Further add the koans in files 13 and 14: creating functions and recursions.
+
+    - Also do the koans in files 21 and 22: the important functions =partition= and =group-by=,
+      and file 25, the threading macros, to solidify this syntax in your mind.
+
+    - Read the [[https://github.com/technomancy/leiningen/blob/stable/doc/TUTORIAL.md][leiningen tutorial]]
+
+    - See if you can create a new sample project which includes
+      these libraries:
+      + [org.clojure/java.jdbc "0.7.11"]
+      + [org.xerial/sqlite-jdbc "3.30.1"]
+      What do you think they do?  Google is your friend.
+
+    - Think of many of the programs you've written in your life in an imperative or functional
+      style.  Can you rewrite all or parts of some of them in functional style?
+     
+
+See you all soon!
