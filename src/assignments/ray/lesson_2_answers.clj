@@ -11,6 +11,23 @@
 
 (toS words_1)
 
+(defn che [words]
+  (group-by frequencies words))
+
+(che words_1)
+
+(defn into-set-1 [words]
+  (let [m (group-by frequencies words)]
+    (into #{} (vals m))))
+
+(into-set-1 words_1)
+
+(defn into-set-2 [words]
+  (let [m (group-by frequencies words)]
+    (map set (vals m))))
+
+(into-set-2 words_1)
+
 ;;;; Finding the frequency of words and group them together
 
 (defn find-anagram_1 [words]
@@ -32,3 +49,14 @@
 
 (find-anagram_3 words_1)
 (find-anagram_3 words_2)
+
+(defn find-anagram_4 [words]
+  (into #{} (filter #(> (count %) 1) (map set (vals (group-by frequencies words))))))
+
+(find-anagram_4 words_1)
+(find-anagram_4 words_2)
+
+;;;; Clears 4clojure.com/problem/77
+
+(fn [words]
+  (into #{} (filter #(> (count %) 1) (map set (vals (group-by frequencies words))))))
