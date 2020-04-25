@@ -113,6 +113,22 @@ We are going to make extensive use of the following:
       types of hands.
 
 
+** Lesson 4
+
+   1. There are no koans dealing with multiprocessing (probably just
+      too hard to write them!)  So we'll be doing the book excercises
+      instead.
+      Do the exercises at the end of chapter 9.
+
+   2. Do the exercises at the end of chapter 10.  Note that in the
+      second excercise, the URL shown is incorrect; it should be HTTPS,
+      not http, thus:
+     #+begin_src clojure
+(slurp "https://www.braveclojure.com/random-quote")   
+   #+end_src
+
+   These exercises are longer and more challenging than the ones you have
+   done so far.  Don't hesitate to reach out on the issues board!
 
 * Legalese
 
