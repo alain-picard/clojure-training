@@ -50,7 +50,7 @@
 
 
 ;; Finds and returns sets of anagrams encapsulated in a set
-(defn find-anagram
+(defn group-by-anagram
   [words]
   (->> (reduce
         ;; Function that associates the original word to a key made from the sorted
