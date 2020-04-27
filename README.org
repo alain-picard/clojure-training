@@ -48,6 +48,7 @@ answers back into the main repo.
  - [X] reduce, functional idioms
  - [ ] tracing, debugging
  - [ ] writing docstrings
+ - [ ] writing tests
  - [ ] Introduction to =leiningen=, dependency management,
        and finding and using libraries in clojure.
  - [ ] threads, futures, promises (concurrency primitives)
@@ -104,13 +105,27 @@ We are going to make extensive use of the following:
       Can you see why clojure has =atoms= and =refs=, and immutable values,
       as its programming model?
 
-   2. Try to solve the [[http://www.4clojure.com/problem/178][best poker hand]] problem.  This will require you
+   3. Try to solve the [[http://www.4clojure.com/problem/178][best poker hand]] problem.  This will require you
       to first solve problem 128, [[http://www.4clojure.com/problem/128][recognizing poker hands]].
       This is an excercise is structuring and factoring your code
       as cleanly as possible; pay close attention to your representation
       and clearly separate the parsing code from the evaluation code.
       See what reusable functions exist in recognizing all the various
       types of hands.
+
+      Here I want you to think not simply in terms of learning clojure syntax;
+      (you should have all the necessary tools to solve this already), but
+      at the next level of sophistication; that is, worry about
+      - choosing good names for functions and variables
+
+      - representation of your data structures
+
+      - clearly separating out functionality
+
+      - making things as readable and understandable as you possibly can
+
+      - write a test harness for your code.
+
 
 
 ** Lesson 4

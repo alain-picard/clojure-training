@@ -296,6 +296,13 @@
 (class
  (our-filter-lazy  odd? (range 10)))
 
+;;;; Writing tests:
+
+;; - The DEFTEST, IS and ARE macros
+;; - where tests live
+;; - how to run your tests
+
+
 
 ;;;;  SQLITE/JDBC example
 
