@@ -1,7 +1,57 @@
 (ns clojure-training.live-lesson03)
 
+;; Review some of the submissions, in particular:
+;; Patrick Ho's:
 
-;; Anagram problem:
+(defn is_anagram
+  [string1 string2]
+  (if (= (sort (apply list (char-array string1)))
+
+         (sort (apply list (char-array string2))))
+    true
+    false))
+
+;; 3 problems:
+;; 1. naming convention. CamelCasing.  Predicates and state changing functions.
+;; 2. misunderstanding sorting and strings as seqs
+;; 3. anti-pattern re: booleans, and statements vs. expressions.
+;; Talk about booleans, and return expressions at some length
+
+
+;; Yunfeng
+(require '[clojure.string :as string])
+
+(defn find-anagrams
+  [vec]
+  (->> (map (fn [str] [str str]) vec)
+       (map (fn [[key value]] {(#(clojure.string/join "" %) (sort (#(string/split % #"") key))) value}))
+       (reduce #(merge-with (fn [v1 v2] (if (set? v1)
+                                          (conj v1 v2)
+                                          #{v1 v2})) %1 %2))
+       (vals)
+       (filter #(set? %))
+       (set)))
+
+
+;; Benson
+;; Returns all consecutive subsequences as nested vectors
+(defn get-consecutive-subseqs
+  [seqs]
+  (reduce
+   ;; Function that groups subsequences as nested vectors together in a vector
+   (fn [seqs number]
+     ;; If the current number is larger than the previous number by one (in consecutive sequence)
+     ;; Then conjoin it to the last nested vector
+     ;; Else associate a new nested vector containing the number at the end
+     (if (= number (inc (last (last seqs))))
+       (assoc-in seqs [(dec (count seqs))] (conj (last seqs) number))
+       (assoc-in seqs [(count seqs)] [number])))
+   [[(first seqs)]] ; Initialize the first vector
+   (rest seqs))) ; Pass in the rest of the sequence
+
+
+;; ===== Alain's answers =====
+;;;; Anagram problem:
 ;; http://www.4clojure.com/problem/77
 
 (defn anagram? [a b]
@@ -233,3 +283,60 @@
 
 (assert (= (seq [1 5 3 9])
            (our-filter-not-lazy odd? [0 1 2 4 5 3 2 8 9 10])))
+
+
+
+(defn our-filter-lazy [pred coll]
+  (let [[x & more] coll]
+    (when x
+      (if (pred x)
+        (cons x (lazy-seq (our-filter-lazy pred more)))
+        (lazy-seq (our-filter-lazy pred more))))))
+
+(class
+ (our-filter-lazy  odd? (range 10)))
+
+
+;;;;  SQLITE/JDBC example
+
+(ns example-sqlite.core
+  (:require [clojure.java.jdbc :as jdbc]))
+
+(def db-conn
+  {:dbtype "sqlite"
+   :dbname "/tmp/test.db"
+   :classname "org.sqlite.JDBC"})
+
+(jdbc/query db-conn ["select 1;"])
+
+
+(def fruit-table-ddl
+  (jdbc/create-table-ddl :fruit
+                      [[:name "varchar(32)"]
+                       [:appearance "varchar(32)"]
+                       [:cost :int]
+                       [:grade :real]]))
+
+(defonce table-creation-results
+  (jdbc/db-do-commands db-conn
+                       [fruit-table-ddl
+                        "CREATE INDEX name_ix ON fruit ( name );"]))
+
+(jdbc/insert-multi! db-conn :fruit
+  [{:name "Apple" :appearance "rosy" :cost 24}
+   {:name "Orange" :appearance "round" :cost 49}])
+
+
+(jdbc/query db-conn
+            ["SELECT * FROM fruit WHERE appearance = ?" "rosy"])
+
+(defn find-fruits [appearance]
+  (jdbc/query db-conn
+              ["SELECT * FROM fruit WHERE appearance = ?" appearance]))
+
+(find-fruits "round")
+
+
+
+
+:live-lesson-3
