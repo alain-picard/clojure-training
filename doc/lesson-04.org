@@ -1,0 +1,36 @@
+* Lesson Goals
+
+
+ - [ ] The philosophical underpinning of state handling in clojure
+ - [ ] vars, atoms, refs, agents
+ - [ ] threads, futures, promises (concurrency primitives)
+
+
+* Preparatory Material for Lesson 4
+
+Lesson goals: This week we'll focus on clojure's facilities
+for multithreading and state management.
+
+    - Attempt the problems assigned at the end of Lesson 3.
+      Raise a pull request when you are done.
+
+    - Read chapters 9 and 10 of [[https://www.braveclojure.com/clojure-for-the-brave-and-true/][Brave and True]],
+
+    - Solve the koans in files 16 and 17
+
+    - Watch this online lecture by Rich Hickey, the designers
+      of the clojure language: [[https://www.infoq.com/presentations/Are-We-There-Yet-Rich-Hickey/][Are we there yet?]]
+      Pay particular example to the example of watching the baseball
+      game example, and the "Epochal Time Model" slide.  This is _Very_ important!!
+      /c.f./ first half of [[https://www.braveclojure.com/zombie-metaphysics/][Chap 10]] of Brave & True.
+      Rich explains, throughout this talk, how confusing the identity of objects
+      with their values breaks our natural understanding of how time evolves in
+      a software system, and his attempt at "decomplecting" these elements.
+      This idea is the key motivation behind the design of clojure.
+      Write down all comments and questions you have about this talk so we
+      can all discuss them together.
+     
+
+
+
+See you all soon!
