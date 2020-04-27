@@ -18,6 +18,8 @@
 (= (update-in users [:age] inc)
    (new-updatein users :age inc))
 
+
+
 ;;;;;;;;;;;;;;;;;;;;;;
 ;; 77 - anagram finder
 
@@ -30,21 +32,22 @@
    (filter #(>= (count %) 2) 
            (set (map set (vals (group-by sort vector)))))))
 
-
 (= (find-anagram ["meat" "mat" "team" "mate" "eat"])
    #{#{"meat" "team" "mate"}})
 
 (= (find-anagram ["veer" "lake" "item" "kale" "mite" "ever" "everever"])
    #{#{"veer" "ever"} #{"lake" "kale"} #{"mite" "item"}})
 
+
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; 53 - longest sub-sequence
 ;; ref link: https://ericsomdahl.github.io/posts/2015-03-01-Fifty-four.html
 
-;; generate all sub-sequences from original sequence
+;; generate all sub-sequences from the original sequence
 ;; only take increasing sub-sequences
-;; group sequences by length
-;; take the longest sequence from sequence
+;; group sub-sequences by length
+;; take the longest sub-sequence from sequences
 
 ;; this function is borrowed from the reference link
 (defn get-seq
@@ -75,7 +78,6 @@
 
 
 ;; test
-
 ;; okay with the first 3 tests"
 (= (longest-subseq [1 0 1 2 3 0 4 5]) [0 1 2 3])
 
@@ -86,6 +88,7 @@
 ;; fail at this test
 ;; since the get-seq never returns an empty array given the input array is not empty
 (= (longest-subseq [7 6 5 4]) [])
+
 
 
 
