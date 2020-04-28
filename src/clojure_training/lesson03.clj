@@ -1,15 +1,22 @@
-(ns clojure-training.live-lesson03)
+(ns clojure-training.lesson03)
+
+
 
 ;; Review some of the submissions, in particular:
 ;; Patrick Ho's:
 
-(defn is_anagram
-  [string1 string2]
-  (if (= (sort (apply list (char-array string1)))
+;; pred (short for predicate) --> returns a boolean
 
-         (sort (apply list (char-array string2))))
-    true
-    false))
+
+(sort "foobar")
+
+(def the-result (< 1 2))
+
+(defn anagram?
+  [string1 string2]
+  (= (sort string1) (sort string2)))
+
+(assert (anagram? "foo" "foo"))
 
 ;; 3 problems:
 ;; 1. naming convention. CamelCasing.  Predicates and state changing functions.
@@ -24,13 +31,19 @@
 (defn find-anagrams
   [vec]
   (->> (map (fn [str] [str str]) vec)
-       (map (fn [[key value]] {(#(clojure.string/join "" %) (sort (#(string/split % #"") key))) value}))
+       (map (fn [[key value]]
+              {(clojure.string/join ""
+                                    (sort (string/split key #"")))
+               value}
+              {(#(clojure.string/join "" %) (sort (#(string/split % #"") key))) value}))
        (reduce #(merge-with (fn [v1 v2] (if (set? v1)
                                           (conj v1 v2)
                                           #{v1 v2})) %1 %2))
        (vals)
        (filter #(set? %))
        (set)))
+
+
 
 
 ;; Benson
@@ -47,7 +60,10 @@
        (assoc-in seqs [(dec (count seqs))] (conj (last seqs) number))
        (assoc-in seqs [(count seqs)] [number])))
    [[(first seqs)]] ; Initialize the first vector
-   (rest seqs))) ; Pass in the rest of the sequence
+   (rest seqs)))
+
+
+ ; Pass in the rest of the sequence
 
 
 ;; ===== Alain's answers =====
@@ -58,11 +74,12 @@
   (= (set a)
      (set b)))
 
-
 (assert (anagram? "meat" "team"))
+
 
 #_
 (assert (not (anagram? "meat" "teammeat")))
+
 
 ;; So then I tried to fix it by also requiring same number of characters:
 (defn anagram? [a b]
@@ -70,6 +87,8 @@
           (set b))
        (= (count a)
           (count b))))
+
+
 
 ;; This solves the problem, but seemed ugly... then it occurred to me that:
 
@@ -79,6 +98,8 @@
   [a b]
   (= (sort a)
      (sort b)))
+
+
 
 ;; I looked at the problem definition, which transformed
 ["veer" "lake" "item" "kale" "mite" "ever"]
@@ -90,11 +111,15 @@
 {"team" #{"team"}
  "mite" #{"mite"}}
 
+
+
 ;; and that when we try to add the word "mate", it'd have
 ;; to turn into this:
 
 {"team" #{"team" "mate"}
  "mite" #{"mite"}}
+
+
 
 
 ;; So I pretended I already had this structure, and
@@ -107,12 +132,16 @@
       (update m match conj w)
       (assoc m w #{w}))))
 
+
+
 ;; Once we have the above, we can wrap it in a function
 (defn add-anagram [m w]
   (let [[match] (filter (partial anagram? w) (keys m) )]
     (if match
       (update m match conj w)
       (assoc m w #{w}))))
+
+
 
 ;; I'm not completely happy with the above, so now
 ;; I'd add a docstring and tweak the code for readability
@@ -135,24 +164,24 @@
     (update map match conj word)
     (assoc map word #{word})))
 
-;; Now I'd go back and test it using my original code:
-(let [m {"team" #{"team"}
-         "mite" #{"mite"}}
-      w "item"]
-  (add-anagram m w)) ; Still works! cool!
+
 
 
 ;; Now it's a simple matter of reducing over our desired sequence:
 (reduce add-anagram
         {}
         ["veer" "lake" "item" "kale" "mite" "ever"])
+
+
 ;; Seems to work, so, assemble in final form
 
 (defn anagrams-problem-77 [words]
   (->> (reduce add-anagram {} words)
        vals
        (filter #(> (count %) 1)) ; Spec only wanted collections of 2 or more anagrams
-       set)) ; and wanted result in a set.
+       set))
+
+ ; and wanted result in a set.
 
 (anagrams-problem-77 ["meat" "mat" "team" "mate" "eat"])
 
@@ -163,6 +192,8 @@
 (assert
  (= (anagrams-problem-77 ["meat" "mat" "team" "mate" "eat"])
     #{#{"meat" "team" "mate"}}))
+
+
 
 ;;; Notice that I did not build the solution in one go,
 ;;; and that I used helper functions along the way.
@@ -203,7 +234,11 @@
   (->> (reduce add-anagram {} words)
        vals
        (filter #(> (count %) 1)) ; Spec only wanted collections of 2 or more anagrams
-       set)) ; and wanted result in a set.
+       set))
+
+
+;;;;;;;;;;;;;;;;;;
+ ; and wanted result in a set.
 
 (assert
  (= (anagrams-problem-77 ["veer" "lake" "item" "kale" "mite" "ever"])
@@ -231,7 +266,7 @@
 ;; The accumulator need not be an atomic value!
 ;; Here we need to keep track of two things
 (let [[current best] [[1 2] [7 8 ]]
-      item 3]
+      item 1]
   (
    (fn [[c b] i]
      (if (<= item (last current))
@@ -262,6 +297,7 @@
 
 
 (longest-subsequence [7 6 5 4])
+
 (longest-subsequence [2 3 3 4 5])
 (assert (= (longest-subsequence [1 0 1 2 3 0 4 5]) [0 1 2 3]))
 
@@ -270,6 +306,8 @@
 
 (assert (= (seq [1 5 3 9])
            (filter odd? [0 1 2 4 5 3 2 8 9 10])))
+
+
 
 
 (defn our-filter-not-lazy [pred coll]
@@ -281,8 +319,10 @@
            (seq [])
            coll)))
 
+
 (assert (= (seq [1 5 3 9])
            (our-filter-not-lazy odd? [0 1 2 4 5 3 2 8 9 10])))
+
 
 
 
@@ -293,57 +333,36 @@
         (cons x (lazy-seq (our-filter-lazy pred more)))
         (lazy-seq (our-filter-lazy pred more))))))
 
+
+(->> (range)
+     (map inc)
+     (drop 5)
+     (take 10))
+
+;; An infinite loop in functional style
+(->> (repeatedly f)                     ; does some i/o and reads events from a bus
+     (map process-event))
+
+(->> (repeatedly rand)
+     (take 5))
+
+;;
+
 (class
  (our-filter-lazy  odd? (range 10)))
 
+(class (range))
+
+(def integers (range))
+
+;;;;
 ;;;; Writing tests:
 
 ;; - The DEFTEST, IS and ARE macros
 ;; - where tests live
 ;; - how to run your tests
 
-
-
-;;;;  SQLITE/JDBC example
-(comment
-
-  (ns example-sqlite.core
-    (:require [clojure.java.jdbc :as jdbc]))
-
-  (def db-conn
-    {:dbtype "sqlite"
-     :dbname "/tmp/test.db"
-     :classname "org.sqlite.JDBC"})
-
-  (jdbc/query db-conn ["select 1;"])
-
-
-  (def fruit-table-ddl
-    (jdbc/create-table-ddl :fruit
-                           [[:name "varchar(32)"]
-                            [:appearance "varchar(32)"]
-                            [:cost :int]
-                            [:grade :real]]))
-
-  (defonce table-creation-results
-    (jdbc/db-do-commands db-conn
-                         [fruit-table-ddl
-                          "CREATE INDEX name_ix ON fruit ( name );"]))
-
-  (jdbc/insert-multi! db-conn :fruit
-                      [{:name "Apple" :appearance "rosy" :cost 24}
-                       {:name "Orange" :appearance "round" :cost 49}])
-
-
-  (jdbc/query db-conn
-              ["SELECT * FROM fruit WHERE appearance = ?" "rosy"])
-
-  (defn find-fruits [appearance]
-    (jdbc/query db-conn
-                ["SELECT * FROM fruit WHERE appearance = ?" appearance]))
-
-  (find-fruits "round")
-
-  )
-
-:live-lesson-3
+;;; Figure output, in your env:
+;; - how to run the debugger
+;; - how to turn tracing on/off
+;; - how to run the inspector
