@@ -80,7 +80,7 @@
      ;; If the current number is larger than the previous number by one (in consecutive sequence)
      ;; Then conjoin it to the last nested vector
      ;; Else associate a new nested vector containing the number at the end
-     (if (= number (inc (last (last seqs))))
+     (if (> number (last (last seqs)))
        (assoc-in seqs [(dec (count seqs))] (conj (last seqs) number))
        (assoc-in seqs [(count seqs)] [number])))
    [[(first seqs)]] ; Initialize the first vector
