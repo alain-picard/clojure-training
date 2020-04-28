@@ -30,7 +30,50 @@ for multithreading and state management.
       Write down all comments and questions you have about this talk so we
       can all discuss them together.
      
+* Lesson plan
+** Is my emacs full screen with big fonts?  Are we recording?  Screen keys on?
+** Discuss Poker solutions
+** Discuss: Notes on Rich Hickey's  [[https://www.infoq.com/presentations/Are-We-There-Yet-Rich-Hickey/][Are we there yet]]
+    - 0:00:00 :: Start of talk.
+    - 0:00:28 :: We will discuss time, in software systems.
+    - 0:01:47 :: Most modern OO languages are all "kinda the same"
+    - 0:03:20 :: What are we missing?
+    - 0:04:25 :: Critical ideas
+    - 0:05:14 :: Incidental complexity
+    - 0:06:30 :: C++
+    - 0:09:04 :: Java
+    - 0:10:04 :: Lack of stable values is a big problem!  The problem of mutability
+    - 0:11:46 :: Can't understand large programs
+      + can't determine scope of effects of changes
+      + concurrency is last straw
+    - 0:13:20 :: Pure functions
+    - 0:14:50 :: Programs aren't functions; they're /processes/
+    - 0:16:36 :: OO: a simplistic model of the real world.  No notion of time
+    - 0:18:34 :: The big mistake: conflation of /identity/ with /value/
+    - 0:20:12 :: "No man can cross the same river twice."  :-)
+    - 0:22:49 :: The notion of /identities/.  Mental constructs superposed onto succession of values.
+    - 0:24:38 :: Definitions:  value, state, identity, time
+    - 0:28:52 :: We don't get to stop the world
+    - 0:29:37 :: Baseball game - perception is massively parallel
+    - 0:32:50 :: Action (in a given place) must be sequential
+    - 0:33:38 :: Epochal time model.  (Most important slide!)
+    - 0:39:03 :: Persistent data structures
+    - 0:41:04 :: We all love trees
+    - 0:45:07 :: Performance hacks
+    - 0:47:18 :: Time constructs
+    - 0:49:56 :: CAS (Compare and swap)
+    - 0:51:34 :: Agents -- =send=
+    - 0:53:09 :: STM.  Preserves epochal time model. (slide 45)
+    - 1:01:38 :: Conclusions 
 
+
+
+** Things to explain
+ Go through [[file:~/Consulting/clients/gojee/work/clojure-training/src/clojure_training/lesson04.clj::(ns%20clojure-training.lesson04)][lesson_04.clj]]
+
+ =atom=  -- compare and swap -- atomic state succession -- uncoordinated, synchronous
+ =agent= -- uncoordinated, asynchronous.
+ =refs=  -- coordinated, synchronous
 
 
 See you all soon!

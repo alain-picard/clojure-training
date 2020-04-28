@@ -46,13 +46,14 @@ answers back into the main repo.
  - [X] sequences, lazy seqs
  - [X] lexical vs dynamic scoping
  - [X] reduce, functional idioms
- - [ ] tracing, debugging
- - [ ] writing docstrings
- - [ ] writing tests
- - [ ] Introduction to =leiningen=, dependency management,
+ - [X] tracing, debugging
+ - [X] writing docstrings
+ - [X] writing tests
+ - [X] Introduction to =leiningen=, dependency management,
        and finding and using libraries in clojure.
- - [ ] threads, futures, promises (concurrency primitives)
+ - [ ] The philosophical underpinning of state handling in clojure
  - [ ] vars, atoms, refs, agents
+ - [ ] threads, futures, promises (concurrency primitives)
  - [ ] throw/catch
  - [ ] strings; regexes
  - [ ] i/o
