@@ -48,11 +48,11 @@ answers back into the main repo.
  - [X] reduce, functional idioms
  - [ ] tracing, debugging
  - [ ] writing docstrings
+ - [ ] writing tests
  - [ ] Introduction to =leiningen=, dependency management,
        and finding and using libraries in clojure.
  - [ ] threads, futures, promises (concurrency primitives)
  - [ ] vars, atoms, refs, agents
- - [ ] tracing, debugging
  - [ ] throw/catch
  - [ ] strings; regexes
  - [ ] i/o
@@ -93,6 +93,57 @@ We are going to make extensive use of the following:
       http://www.4clojure.com/problem/77
    4. Write a function which solves this problem:
       http://www.4clojure.com/problem/53
+
+** Lesson 3
+
+   1. Read chapters 9 and 10 of [[https://www.braveclojure.com/clojure-for-the-brave-and-true/][Clojure for the Brave and True]]
+
+   2. Listen to the this online talk: [[https://www.infoq.com/presentations/Are-We-There-Yet-Rich-Hickey/][Are we there yet]]
+      Take notes!  Listen carefully!  Rich is a very deep thinker.
+      Pay particular attention to the analogy about the baseball game,
+      when he discusses how state evolves and should be modelled.
+      Can you see why clojure has =atoms= and =refs=, and immutable values,
+      as its programming model?
+
+   3. Try to solve the [[http://www.4clojure.com/problem/178][best poker hand]] problem.  This will require you
+      to first solve problem 128, [[http://www.4clojure.com/problem/128][recognizing poker hands]].
+      This is an excercise is structuring and factoring your code
+      as cleanly as possible; pay close attention to your representation
+      and clearly separate the parsing code from the evaluation code.
+      See what reusable functions exist in recognizing all the various
+      types of hands.
+
+      Here I want you to think not simply in terms of learning clojure syntax;
+      (you should have all the necessary tools to solve this already), but
+      at the next level of sophistication; that is, worry about
+      - choosing good names for functions and variables
+
+      - representation of your data structures
+
+      - clearly separating out functionality
+
+      - making things as readable and understandable as you possibly can
+
+      - write a test harness for your code.
+
+
+
+** Lesson 4
+
+   1. There are no koans dealing with multiprocessing (probably just
+      too hard to write them!)  So we'll be doing the book excercises
+      instead.
+      Do the exercises at the end of chapter 9.
+
+   2. Do the exercises at the end of chapter 10.  Note that in the
+      second excercise, the URL shown is incorrect; it should be HTTPS,
+      not http, thus:
+     #+begin_src clojure
+(slurp "https://www.braveclojure.com/random-quote")   
+   #+end_src
+
+   These exercises are longer and more challenging than the ones you have
+   done so far.  Don't hesitate to reach out on the issues board!
 
 * Legalese
 

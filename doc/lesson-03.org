@@ -3,6 +3,7 @@
  - [ ] Field questions and review assignment problems.
  - [ ] tracing, debugging
  - [ ] writing docstrings
+ - [ ] writing tests
  - [ ] Introduction to =leiningen=, dependency management,
        and finding and using libraries in clojure.
 
