@@ -1,6 +1,6 @@
-(ns lesson-3-answers)
+(ns assignments.benson.lesson-3-answers)
 
-(declare flush? in-sequence?)
+(declare flush? straight? filter-matching-pairs)
 
 (defn get-suit
   "Returns the corresponding suit of a card based on the first
@@ -45,26 +45,25 @@ character of PAIR"
                              S8 S9 ST SJ SQ SK SA])))
 
 
-;Straight flush: All cards in the same suit, and in sequence
-;Four of a kind: Four of the cards have the same rank
-;Full House: Three cards of one rank, the other two of another rank
-;Flush: All cards in the same suit
-;Straight: All cards in sequence (aces can be high or low, but not both at once)
-;Three of a kind: Three of the cards have the same rank
-;Two pair: Two pairs of cards have the same rank
-;Pair: Two cards have the same rank
-;High card: None of the above conditions are met
-
-;(= :straight-flush (__ ["HA" "HK" "HQ" "HJ" "HT"]))
-
-
 (defn straight-flush?
   "Returns if all pairs in HAND are sequential and are of the same suit"
   [hand]
-  (and (flush? hand) (in-sequence? hand))
+  (and (flush? hand) (straight? hand))
   )
 
-(defn in-sequence?
+(defn full-house?
+  "returns a truthy value if a full-house (3 pair + 2 pair) is in HAND
+   otherwise return nil"
+  [hand]
+  (and (filter-matching-pairs hand 3)
+       (filter-matching-pairs hand 2)))
+
+(defn flush?
+  "Returns if all suits in the HAND are the same"
+  [hand]
+  (= 1 (count (set (map get-suit hand)))))
+
+(defn straight?
   "Returns whether the HAND is in sequence or not.
    This function expects the HAND to be sorted in descending order
    BUT has an exception for 'baby straights' where it expects a hand
@@ -80,7 +79,50 @@ character of PAIR"
       ))
   )
 
-(defn flush?
-  "Returns if all suits in the HAND are the same"
+(defn four-of-a-kind?
+  "Returns a list containing containing 4 matching pairs (truthy) otherwise return nil"
   [hand]
-  (= 1 (count (set (map get-suit hand)))))
+  (filter-matching-pairs hand 4))
+
+(defn three-of-a-kind?
+  "Returns a list containing containing 3 matching pairs (truthy) otherwise return nil"
+  [hand]
+  (filter-matching-pairs hand 3))
+
+(defn two-pair?
+  "Returns if there are two matching pairs in HAND"
+  [hand]
+  (= (count (filter-matching-pairs hand 2)) 2))
+
+(defn pair?
+  "Returns if there is only one maching pair in HAND"
+  [hand]
+  (= (count (filter-matching-pairs hand 2)) 1))
+
+(defn get-matching-pairs
+  "Returns a partitioned list of pairs by rank from HAND"
+  [hand]
+  (let [values (sort (map get-rank hand))]
+    (partition-by identity values)))
+
+(defn filter-matching-pairs
+  "Returns a list with matching pairs with SIZE matches grouped together in nested lists
+  otherwise return nil if no matching pairs are found"
+  [matching-pairs size]
+  (seq
+   (filter #(= (count %) size)
+           (get-matching-pairs matching-pairs))))
+
+(defn best-hand
+  "Returns the type of best hand available from HAND"
+  [hand]
+  (cond
+    (straight-flush? hand) :straight-flush
+    (four-of-a-kind? hand) :four-of-a-kind
+    (full-house? hand) :full-house
+    (flush? hand) :flush
+    (straight? hand) :straight
+    (three-of-a-kind? hand) :three-of-a-kind
+    (two-pair? hand) :two-pair
+    (pair? hand) :pair
+    :else :high-card))
