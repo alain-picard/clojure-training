@@ -3,9 +3,15 @@
 ;;;; Lesson plan:
 ;; - ask for completed assignments by lunchtime on the day
 ;;   of lesson, so I can review.
+;; - Review a couple of misunderstandings:
+;;   explain about maps, what's the key, what's the value,
+;;   key isn't same as keyword,
+;;   maps and sets (all colls, actually) as functions
+;; - ask for comments/questions on what they'd like to see
+;;   in material or preparation.
 ;; - Field questions about poker assignments.
 ;; - review AP's solution, if interest is shown
-;;
+;; - get on with this lecture's new material!
 
 
 

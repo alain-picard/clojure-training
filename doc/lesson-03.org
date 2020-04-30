@@ -1,10 +1,10 @@
 * Lesson Goals
 
- - [ ] Field questions and review assignment problems.
- - [ ] tracing, debugging
+ - [X] Field questions and review assignment problems.
+ - [X] tracing, debugging
  - [ ] writing docstrings
- - [ ] writing tests
- - [ ] Introduction to =leiningen=, dependency management,
+ - [X] writing tests
+ - [X] Introduction to =leiningen=, dependency management,
        and finding and using libraries in clojure.
 
 * Preparatory Material for Lesson 3
