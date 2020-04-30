@@ -1,5 +1,15 @@
 (ns clojure-training.lesson04)
 
+;;;; Lesson plan:
+;; - ask for completed assignments by lunchtime on the day
+;;   of lesson, so I can review.
+;; - Field questions about poker assignments.
+;; - review AP's solution, if interest is shown
+;;
+
+
+
+
 ;;;; Atoms
 
 (def bank-account

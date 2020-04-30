@@ -32,7 +32,12 @@ for multithreading and state management.
      
 * Lesson plan
 ** Is my emacs full screen with big fonts?  Are we recording?  Screen keys on?
-** Discuss Poker solutions
+** Discuss Poker solutions --- see these points:
+ - many of you leave dangling parens.  Talk about paredit again.
+ - two of you only did the parsing bit.  Perhaps I was unclear in the
+   assignment description?  Please go attempt  [[http://www.4clojure.com/problem/178][best poker hand]].
+ - 
+
 ** Discuss: Notes on Rich Hickey's  [[https://www.infoq.com/presentations/Are-We-There-Yet-Rich-Hickey/][Are we there yet]]
     - 0:00:00 :: Start of talk.
     - 0:00:28 :: We will discuss time, in software systems.

@@ -54,10 +54,11 @@ answers back into the main repo.
  - [ ] The philosophical underpinning of state handling in clojure
  - [ ] vars, atoms, refs, agents
  - [ ] threads, futures, promises (concurrency primitives)
- - [ ] throw/catch
- - [ ] strings; regexes
- - [ ] i/o
  - [ ] java interop
+ - [ ] namespaces, the ns macro
+ - [ ] i/o
+ - [ ] strings; regexes
+ - [ ] throw/catch
  - [ ] multimethods
  - [ ] finding and using libraries
  - [ ] supply a list of recommended good libs.
@@ -80,6 +81,7 @@ We are going to make extensive use of the following:
   - [[file:doc/lesson-01.org::*Introductory%20email][Lesson 1]]
   - [[file:doc/lesson-02.org::*Lesson%20Goals][Lesson 2]]
   - [[file:doc/lesson-03.org::*Lesson%20Goals][Lesson 3]]
+  - [[file:doc/lesson-04.org::*Lesson%20Goals][Lesson 4]]
 
 * Assignments
 
@@ -126,6 +128,7 @@ We are going to make extensive use of the following:
       - making things as readable and understandable as you possibly can
 
       - write a test harness for your code.
+
 
 
 

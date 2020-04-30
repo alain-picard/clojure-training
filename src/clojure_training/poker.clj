@@ -28,9 +28,10 @@
   (let [s    (clojure.string/upper-case s)
         suit (suits (first s))
         rank (ranks (second s))]
-    (assert suit)
-    (assert rank)
+    (assert suit "The only valid suit names are H S D C")
+    (assert rank "The only valid ranks are 2-9, T, J Q K A")
     {:suit suit :rank rank :face-value (face-value rank)}))
+
 
 (assert (= (range 13) (map (comp :rank parse-card str)
                            '[S2 S3 S4 S5 S6 S7
@@ -47,7 +48,7 @@
   [coll]
   (let [hand (map parse-card coll)]
     (assert  (= 5 (count (set hand)))   ; No repeats!  No cheating!
-             "Invalid hand.")
+             "Invalid hand.  Need exactly 5 distinct cards.")
     (sort-by :rank hand)))
 
 (defn card-frequencies [hand]
@@ -123,3 +124,7 @@
  (= :full-house (evaluate-poker-hand ["HA" "DA" "CA" "HJ" "DJ"]))
  (= :four-of-a-kind (evaluate-poker-hand ["HA" "DA" "CA" "SA" "DJ"]))
  (= :straight-flush (evaluate-poker-hand ["HA" "HK" "HQ" "HJ" "HT"])))
+
+
+
+:poker
