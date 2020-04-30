@@ -47,7 +47,6 @@ answers back into the main repo.
  - [X] lexical vs dynamic scoping
  - [X] reduce, functional idioms
  - [X] tracing, debugging
- - [X] writing docstrings
  - [X] writing tests
  - [X] Introduction to =leiningen=, dependency management,
        and finding and using libraries in clojure.
@@ -57,14 +56,15 @@ answers back into the main repo.
  - [ ] java interop
  - [ ] namespaces, the ns macro
  - [ ] i/o
+ - [ ] writing docstrings
  - [ ] strings; regexes
  - [ ] throw/catch
  - [ ] multimethods
+ - [ ] Simple HTTP service: ring handlers, libraries
  - [ ] finding and using libraries
  - [ ] supply a list of recommended good libs.
  - [ ] reader syntax
  - [ ] macros, threading macros
- - [ ] ring handlers, libraries
  - [ ] core.async
  - [ ] clojurescript
  - [ ] reframe
@@ -78,10 +78,21 @@ We are going to make extensive use of the following:
  - Many of the excellent at [[http://www.4clojure.com/problems][4clojure sample problems]]
 
 * Lesson Plans
-  - [[file:doc/lesson-01.org::*Introductory%20email][Lesson 1]]
-  - [[file:doc/lesson-02.org::*Lesson%20Goals][Lesson 2]]
-  - [[file:doc/lesson-03.org::*Lesson%20Goals][Lesson 3]]
-  - [[file:doc/lesson-04.org::*Lesson%20Goals][Lesson 4]]
+  - [[file:doc/lesson-01.org::*Introductory%20email][Lesson 1]] :: intro 
+  - [[file:doc/lesson-02.org::*Lesson%20Goals][Lesson 2]] :: Functional Programming
+  - [[file:doc/lesson-03.org::*Lesson%20Goals][Lesson 3]] :: More functional programming
+  - [[file:doc/lesson-04.org::*Lesson%20Goals][Lesson 4]] :: References and identities, threads
+  - [[file:doc/lesson-05.org::*Lesson%20Goals][Lesson 5]] :: Java interop, namespaces, i/o
+  - Lesson 6 :: Clojure odds and ends
+  - Lesson 7 :: Building a simple HTTP service
+  - Lesson 8 :: Clojure as a lisp: macros
+  - Lesson 9 :: core.async
+  - Lesson 10 :: Clojurescript
+  - Lesson 11 :: Re-Frame
+  - Lesson 12 :: The word puzzle (part 1)
+  - Lesson 13 :: The word puzzle (part 2)
+
+
 
 * Assignments
 
