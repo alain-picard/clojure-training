@@ -96,22 +96,16 @@
             We use the same method as case 3 to determine the final result.
    default: means invalid input"
   [recongized-hand number-of-unique-rank]
-  (case number-of-unique-rank
-    5 (if (flush? recongized-hand)
-        (if (straight? recongized-hand)
-          :straight-flush
-          :flush)
-        (if (straight? recongized-hand)
-          :straight
-          :high-card))
-    4 :pair
-    3 (if (apply = (find-duplicate-ranks recongized-hand))
-        :three-of-a-kind
-        :two-pair)
-    2 (if (apply = (find-duplicate-ranks recongized-hand))
-        :four-of-a-kind
-        :full-house)
-    "Invalid Input"))
+  (cond (and (= number-of-unique-rank 5) (flush? recongized-hand) (straight? recongized-hand)) :straight-flush
+        (and (= number-of-unique-rank 5) (flush? recongized-hand) (not (straight? recongized-hand))) :flush
+        (and (= number-of-unique-rank 5) (not (flush? recongized-hand)) (straight? recongized-hand)) :straight
+        (and (= number-of-unique-rank 5) (not (flush? recongized-hand)) (not (straight? recongized-hand))) :high-card
+        (= number-of-unique-rank 4) :pair
+        (and (= number-of-unique-rank 3) (apply = (find-duplicate-ranks recongized-hand))) :three-of-a-kind
+        (and (= number-of-unique-rank 3) (not (apply = (find-duplicate-ranks recongized-hand)))) :two-pair
+        (and (= number-of-unique-rank 2) (apply = (find-duplicate-ranks recongized-hand))) :four-of-a-kind
+        (and (= number-of-unique-rank 2) (not (apply = (find-duplicate-ranks recongized-hand)))) :full-house
+        :else "Invalid input"))
 
 
 (defn best-hand
