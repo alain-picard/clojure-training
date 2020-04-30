@@ -30,7 +30,18 @@
 (filter-reduce1 even? (range 10))
 (filter-reduce odd? [1 2 3 4 5])
 
-;;;; Question 3: Update-in implementation 
+;;;; Question 3: Update-in implementation
+(defn custom-update-in [coll ks func]
+  (assoc coll (first ks) (func (get coll (first ks)))))
+
+(def p {:name "Ray" :age 30})
+(def t-map {:a {:b 3} :b 40})
+
+(update-in p [:age] inc)
+(update-in t-map [:a :b] inc)
+
+(custom-update-in p [:age] inc)
+;;(custom-update-in t-map [:a :b] 1)
 
 ;;;; Question 4: 4clojure question 77
 
@@ -55,3 +66,7 @@
   (into #{} (filter #(> (count %) 1) (map set (vals (group-by frequencies words))))))
 
 ;;;; Question 5: 4clojure question 53
+
+
+
+
