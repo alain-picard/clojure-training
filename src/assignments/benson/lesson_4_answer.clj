@@ -38,7 +38,7 @@
 ;(re-seq #"https?://[^\"]*" (search "clojure"))
 
 
-;;;; CHAPTER 10
+;;;; ---------------------------- CHAPTER 10 ------------------------------
 
 ;;;; EXECRISE 1
 
@@ -99,3 +99,27 @@
   (-> quote
       (clojure.string/split #" ")
       (count)))
+
+;;;; EXERCISE 3
+
+;;;; Create representations of two characters in a game. 
+;;;; The first character has 15 hit points out of a total of 40. 
+;;;; The second character has a healing potion in his inventory. 
+;;;; Use refs and transactions to model the consumption of the 
+;;;; healing potion and the first character healing.
+
+(def warrior (ref {:health 15}))
+(def healer (ref {:potion 1}))
+
+(defn use-potion
+  "Transaction where OWNER uses a potion to heal TARGET to full health"
+  [target owner]
+  (if (> (:potion @healer) 0)
+    (dosync
+     (alter owner update :potion dec)
+     (alter warrior assoc :health 40)))
+  "Not enough potions!")
+
+(use-potion warrior healer)
+(deref warrior) ; =>{:health 40}
+(deref healer) ; =>{:potion 0}
