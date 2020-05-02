@@ -46,23 +46,25 @@ answers back into the main repo.
  - [X] sequences, lazy seqs
  - [X] lexical vs dynamic scoping
  - [X] reduce, functional idioms
- - [ ] tracing, debugging
- - [ ] writing docstrings
- - [ ] Introduction to =leiningen=, dependency management,
+ - [X] tracing, debugging
+ - [X] writing tests
+ - [X] Introduction to =leiningen=, dependency management,
        and finding and using libraries in clojure.
- - [ ] threads, futures, promises (concurrency primitives)
+ - [ ] The philosophical underpinning of state handling in clojure
  - [ ] vars, atoms, refs, agents
- - [ ] tracing, debugging
- - [ ] throw/catch
- - [ ] strings; regexes
- - [ ] i/o
+ - [ ] threads, futures, promises (concurrency primitives)
  - [ ] java interop
+ - [ ] namespaces, the ns macro
+ - [ ] i/o
+ - [ ] writing docstrings
+ - [ ] strings; regexes
+ - [ ] throw/catch
  - [ ] multimethods
+ - [ ] Simple HTTP service: ring handlers, libraries
  - [ ] finding and using libraries
  - [ ] supply a list of recommended good libs.
  - [ ] reader syntax
  - [ ] macros, threading macros
- - [ ] ring handlers, libraries
  - [ ] core.async
  - [ ] clojurescript
  - [ ] reframe
@@ -76,9 +78,21 @@ We are going to make extensive use of the following:
  - Many of the excellent at [[http://www.4clojure.com/problems][4clojure sample problems]]
 
 * Lesson Plans
-  - [[file:doc/lesson-01.org::*Introductory%20email][Lesson 1]]
-  - [[file:doc/lesson-02.org::*Lesson%20Goals][Lesson 2]]
-  - [[file:doc/lesson-03.org::*Lesson%20Goals][Lesson 3]]
+  - [[file:doc/lesson-01.org::*Introductory%20email][Lesson 1]] :: intro 
+  - [[file:doc/lesson-02.org::*Lesson%20Goals][Lesson 2]] :: Functional Programming
+  - [[file:doc/lesson-03.org::*Lesson%20Goals][Lesson 3]] :: More functional programming
+  - [[file:doc/lesson-04.org::*Lesson%20Goals][Lesson 4]] :: References and identities, threads
+  - [[file:doc/lesson-05.org::*Lesson%20Goals][Lesson 5]] :: Java interop, namespaces, i/o
+  - Lesson 6 :: Clojure odds and ends
+  - Lesson 7 :: Building a simple HTTP service
+  - Lesson 8 :: Clojure as a lisp: macros [DEFER? SKIP?]
+  - Lesson 9 :: core.async
+  - Lesson 10 :: Clojurescript
+  - Lesson 11 :: Re-Frame
+  - Lesson 12 :: The word puzzle (part 1)
+  - Lesson 13 :: The word puzzle (part 2)
+
+
 
 * Assignments
 
@@ -93,6 +107,58 @@ We are going to make extensive use of the following:
       http://www.4clojure.com/problem/77
    4. Write a function which solves this problem:
       http://www.4clojure.com/problem/53
+
+** Lesson 3
+
+   1. Read chapters 9 and 10 of [[https://www.braveclojure.com/clojure-for-the-brave-and-true/][Clojure for the Brave and True]]
+
+   2. Listen to the this online talk: [[https://www.infoq.com/presentations/Are-We-There-Yet-Rich-Hickey/][Are we there yet]]
+      Take notes!  Listen carefully!  Rich is a very deep thinker.
+      Pay particular attention to the analogy about the baseball game,
+      when he discusses how state evolves and should be modelled.
+      Can you see why clojure has =atoms= and =refs=, and immutable values,
+      as its programming model?
+
+   3. Try to solve the [[http://www.4clojure.com/problem/178][best poker hand]] problem.  This will require you
+      to first solve problem 128, [[http://www.4clojure.com/problem/128][recognizing poker hands]].
+      This is an excercise is structuring and factoring your code
+      as cleanly as possible; pay close attention to your representation
+      and clearly separate the parsing code from the evaluation code.
+      See what reusable functions exist in recognizing all the various
+      types of hands.
+
+      Here I want you to think not simply in terms of learning clojure syntax;
+      (you should have all the necessary tools to solve this already), but
+      at the next level of sophistication; that is, worry about
+      - choosing good names for functions and variables
+
+      - representation of your data structures
+
+      - clearly separating out functionality
+
+      - making things as readable and understandable as you possibly can
+
+      - write a test harness for your code.
+
+
+
+
+** Lesson 4
+
+   1. There are no koans dealing with multiprocessing (probably just
+      too hard to write them!)  So we'll be doing the book excercises
+      instead.
+      Do the exercises at the end of chapter 9.
+
+   2. Do the exercises at the end of chapter 10.  Note that in the
+      second excercise, the URL shown is incorrect; it should be HTTPS,
+      not http, thus:
+     #+begin_src clojure
+(slurp "https://www.braveclojure.com/random-quote")   
+   #+end_src
+
+   These exercises are longer and more challenging than the ones you have
+   done so far.  Don't hesitate to reach out on the issues board!
 
 * Legalese
 
