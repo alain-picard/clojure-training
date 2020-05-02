@@ -1,4 +1,5 @@
 (ns lesson-4-answers)
+(require '[clojure.string :as str])
 
 ;;;; Chapter 9 Answers
 
@@ -7,16 +8,60 @@
 
 ;; Question 1
 
+;; Define an atomic number to 0
 (def a-number (atom 0))
 
+;; Do some addition
 (swap! a-number inc)
 (swap! a-number inc)
 (swap! a-number inc)
 
+;; Printing out the atomic number
 @a-number
 
 ;; Question 2
 
+;; Count word frequencies
+
+(defn get-quote []
+  ;; Getting the quote from the site
+  (slurp "https://www.braveclojure.com/random-quote"))
+
+(defn clean-quote [quote]
+  ;; A series of quote cleaning operations
+  ;; 1. Make all words lower-case
+  ;; 2. Splitting quote with author
+  ;; 3. Getting the quote part from the split
+  ;; 4. Returning all words
+  (re-seq #"\w+" (first (str/split (str/lower-case quote) #"\n"))))
+
+(defn word-frequencies [quote]
+  ;; Getting the words frequencies in a quote
+  (frequencies quote))
+
+(time
+ (defn quote-word-count [number-of-quotes]
+   ;; Getting the resulting frequencies of words from quotes
+   ;; Creating an atom of map
+   ;; Uses futures to make the update calls to make sure the resulting atom value will not be returned prior all futures have finished
+   ;; Users parallel map instead of regular map for performance
+   (let [word-count (atom {})]
+     (dorun (pmap (fn [nq] (swap! word-count (partial merge-with + (word-frequencies (clean-quote (get-quote)))))) (range number-of-quotes)))
+     @word-count)))
+
+(quote-word-count 8)
+
+;; Some tests used while writing the solution which I don't want to delete them
+(get-quote)
+(clean-quote (get-quote))
+(word-frequencies (clean-quote (get-quote)))
+
+(def a1 (frequencies ["hello" "world"]))
+(def a2 (frequencies ["bye" "world"]))
+(def comb (merge-with + a1 a2))
+(println a1)
+(println a2)
+(println comb)
 
 ;; Question 3
 
