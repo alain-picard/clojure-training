@@ -1,41 +1,35 @@
-(ns assignments.benson.lesson-4-answers
-  (:import [java.net URL URLEncoder]))
+(ns assignments.benson.lesson-4-answers)
 
-(declare map-futures get-quote-entry get-quote-author get-quote-count)
+(declare parse-results map-futures get-quote-entry get-quote-author get-quote-count)
 
-;; Doesn't work if you use '='
-;; must use %3D instead
-(def search-url "http://www.google.com/search?q%3D")
+;;;; ---------------------------- CHAPTER 9 ------------------------------
 
-(defn google-search
-  [search-term]
-  (slurp (str search-url search-term)))
+;;;; EXERCISE 1 + 2
 
-;; Code I stole online that works
-(def google-search-url "http://www.google.com/search?q=")
+(def search-engines ["https://www.bing.com/search?q=" 
+                     "https://au.search.yahoo.com/search?p="
+                     "https://www.yippy.com/search?query="])
 
-(def user-agent "Chrome/25.0.1364.172")
+(defn search
+  "Searchs SEARCH-TERM on provided SEARCH-ENGINES and returns the HTML
+   of the search results"
+  [search-term search-engines]
+  ;; Mapping is done in parallel due to the large time of f
+  (pmap #(slurp (str % search-term)) search-engines))
 
-(defn open-connection [url]
-  (doto (.openConnection url)
-    (.setRequestProperty "User-Agent" user-agent)))
+;;;; EXERCISE 3
 
-(defn get-response [url]
-  (let [conn (open-connection url)
-        in   (.getInputStream conn)
-        sb   (StringBuilder.)]
-    (loop [c (.read in)]
-      (if (neg? c)
-        (str sb)
-        (do
-          (.append sb (char c))
-          (recur (.read in)))))))
+(defn search2
+  "Returns a vector of links from each search result"
+  [search-term search-engines]
+  (parse-results (search search-term search-engines)))
 
-(defn search [query]
-  (let [url (URL. (str google-search-url (URLEncoder/encode query) "&num=1"))]
-    (get-response url)))
-
-;(re-seq #"https?://[^\"]*" (search "clojure"))
+(defn parse-results
+  "Parses all links from a vector of SEARCH-RESULTS
+   Note: only the first 5 links are taken from each search result for
+   ease of testing and validation purposes"
+  [search-results]
+  (map #(take 5 (re-seq #"https?://[^\"]*" %)) search-results))
 
 
 ;;;; ---------------------------- CHAPTER 10 ------------------------------
@@ -101,12 +95,6 @@
       (count)))
 
 ;;;; EXERCISE 3
-
-;;;; Create representations of two characters in a game. 
-;;;; The first character has 15 hit points out of a total of 40. 
-;;;; The second character has a healing potion in his inventory. 
-;;;; Use refs and transactions to model the consumption of the 
-;;;; healing potion and the first character healing.
 
 (def warrior (ref {:health 15}))
 (def healer (ref {:potion 1}))
