@@ -1,64 +1,4 @@
-(ns src.assignments.phat.lesson_4_answers)
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Chapter 9 exercises
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-;;;;;;;;;;;;;
-;; exercise 1
-(def bing-url "https://www.bing.com/search?q=")
-(def yahoo-url "https://au.search.yahoo.com/search?p=")
-(def yippy-url "https://www.yippy.com/search?query=")
-
-(defn search
-  "return the first page of result from search engines"
-  [text]
-  (let [result (promise)]
-    (doseq [search-tools [bing-url yahoo-url]]
-      (future (if-let [results-page (slurp (str seacrh-tools text))]
-                (deliver result results-page))))
-    @result))
-
-(def mypage (search "dogs"))
-mypage
-
-;;;;;;;;;;;;;
-;; exercise 2
-;; Update your function so it takes a second argument consisting of the search engines to use.
-(def search-engines {:bing bing-url
-                     :yahoo yahoo-url
-                     :yippy yippy-url})
-
-(defn search 
-  [text & tools]
-  (let [result (promise)]
-    (doseq [tool tools]
-      (assert (contains? search-engines tool)
-              "Only valid search engines including :bing :yahoo and :yippy are accepted")
-      (future (if-let [results-page (slurp (str (search-engines tool) text))]
-                (deliver result results-page))))
-    @result))
-
-(search "cats" :bing :yahoo)
-
-;;;;;;;;;;;;; 
-;; exercise 3
-;; Create a new function that takes a search term and search engines as arguments, and returns a vector of the URLs from the first page of search results from each search engine.
-(defn results-from-search [search-term & engines]
-  (let [results-page (search-on-engines search-term engines)
-        matches (re-seq #"href=\"([^\" ]*)\"" results)
-        uris (map second matches)
-        external-links (filter #(re-find #"http(?s)://" %) uris)]
-    external-links))
-
-
-
-
-
-
-
-
-
+(ns src.assignments.phat.lesson_4_answers_chapter10)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
  ;; Chapter 10 exercises
@@ -118,7 +58,7 @@ person
       (swap! word-count #(+ % x)))
     @word-count))
 
-(quote-word-count 3)
+(quote-word-count 5)
 
 ;;;;;;;;;;;;;
 ;; exercise 3
