@@ -50,13 +50,15 @@ answers back into the main repo.
  - [X] writing tests
  - [X] Introduction to =leiningen=, dependency management,
        and finding and using libraries in clojure.
- - [ ] The philosophical underpinning of state handling in clojure
- - [ ] vars, atoms, refs, agents
- - [ ] threads, futures, promises (concurrency primitives)
- - [ ] java interop
+ - [X] The philosophical underpinning of state handling in clojure
+ - [X] vars, atoms, refs, agents
+ - [X] threads, futures, promises (concurrency primitives)
+ - [ ] The reader, it's syntax, and brief macro overview
+ - [ ] java interop, definining new types
  - [ ] namespaces, the ns macro
  - [ ] i/o
- - [ ] writing docstrings
+ - [ ] writing (good!) docstrings
+ - [ ] metadata
  - [ ] strings; regexes
  - [ ] throw/catch
  - [ ] multimethods

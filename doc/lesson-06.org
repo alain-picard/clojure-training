@@ -1,6 +1,7 @@
 * Lesson 6: Clojure odds and ends
 
  - [ ] writing good docstrings
+ - [ ] metadata
  - [ ] strings; regexes
  - [ ] throw/catch
  - [ ] multimethods
@@ -13,8 +14,8 @@
 
 Lesson goals: This week we'll
 
- - 
- - 
+ - Read chapter 13
+ - Koans 23, 27
 
 * Lesson plan
 ** Is my emacs full screen with big fonts?  Are we recording?  Screen keys on?
