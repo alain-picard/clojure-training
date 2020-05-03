@@ -3,25 +3,60 @@
 
 ;;;; Chapter 9 Answers
 
+;; Question 1
+
+(defn search-with-term [search-term]
+  ;; Searching a term on Bing
+  (slurp (str "https://www.bing.com/search?q=" search-term)))
+
+(search-with-term "clojure")
+
+;; Question 2
+
+(def search-engines {"bing" "https://www.bing.com/search?q="})
+
+(defn search-with-engine-term [search-engine search-term]
+  ;; Searching a term based on search engine and term
+  ;; Check if the given engine exists, then return the term searched on the engine, otherwise, return an error message
+  (if (contains? search-engines (str/lower-case search-engine))
+    (slurp (str (get search-engines search-engine) search-term))
+    (println "Engine not found")))
+
+(search-with-engine-term "bing" "clojure")
+
+;; Question 3
+
+(defn get-url [search-engine search-term]
+  ;; Searching a term based on search engine and term
+  ;; Check if the given engine exists, then return a vector of URLS, otherwise, return an error message
+  (if (contains? search-engines (str/lower-case search-engine))
+    (re-seq #"https://[^\"]*" (search-with-engine-term search-engine search-term))
+    (println "Engine not found")))
+
+(get-url "bing" "clojure")
 
 ;;;; Chapter 10 Answers
 
 ;; Question 1
 
 ;; Define an atomic number to 0
+
 (def a-number (atom 0))
 
 ;; Do some addition
+
 (swap! a-number inc)
 (swap! a-number inc)
 (swap! a-number inc)
 
 ;; Printing out the atomic number
+
 @a-number
 
 ;; Question 2
 
 ;; Count word frequencies
+
 
 (defn get-quote []
   ;; Getting the quote from the site
@@ -52,6 +87,7 @@
 (quote-word-count 8)
 
 ;; Some tests used while writing the solution which I don't want to delete them
+
 (get-quote)
 (clean-quote (get-quote))
 (word-frequencies (clean-quote (get-quote)))
@@ -68,6 +104,7 @@
 ;; Defining a warrior and priest structure, each character has a map of hit-point and inventory
 ;; Hit-point represents another map which contains current hp and total hp, and the amount of hp as value
 ;; Inventory repressents a map with what items are inside inventory and value represnts the amount of the item
+
 (def warrior (ref {:hit-point {:current 15 :total 40} :inventory {:healing-potion 0}}))
 (def priest (ref {:hit-point {:current 30 :total 30} :inventory {:healing-potion 1}}))
 
@@ -99,8 +136,6 @@
 
 (println @priest)
 (println @warrior)
-
-
 
 
 
