@@ -1,30 +1,38 @@
 * Lesson 6: Clojure odds and ends
 
  - [ ] writing good docstrings
+ - [ ] linting with kondo; emacs integration  
  - [ ] metadata
  - [ ] strings; regexes
  - [ ] throw/catch
  - [ ] multimethods
  - [ ] finding and using libraries
  - [ ] supply a list of recommended good libs.
- - [ ] reader syntax
 
 * Preparatory Material for Lesson 6
 
 
 Lesson goals: This week we'll
 
- - Read chapter 13
- - Koans 23, 27
+ - Read chapter 13, specially multimethods
+ - Do koans file 10, 27 (multimethods)
+   
 
 * Lesson plan
-** Is my emacs full screen with big fonts?  Are we recording?  Screen keys on?
-** Discuss problem solutions --- see these points:
- - points?
-
 
 ** Things to explain
  Go through [[file:~/Consulting/clients/gojee/work/clojure-training/src/clojure_training/lesson06.clj][lesson_06.clj]]
+
+** Some useful libraries to look at
+
+ - cheschire, camel-snake-kebab, parsing json
+ - medley (utilities)
+ - timbre (logging)
+ - Many of the libs under https://github.com/clj-commons, such as
+   - useful
+   - fs
+   - ring-buffer
+ - Clone and have a look at [[https://github.com/clojure-cookbook/clojure-cookbook][The Clojure Cookbook]]!  It's free!
 
 
 See you all soon!
