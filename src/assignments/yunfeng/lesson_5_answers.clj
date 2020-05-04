@@ -78,15 +78,15 @@
   [{:keys [health]}]
   (or (and (>= health 0)
            (<= health 40))
-      (throw (IllegalStateException "Character1 is Healthy."))))
+      (throw (IllegalStateException. "Character1 is Healthy."))))
 
 (defn v-for-character-2
   [{:keys [healing-potion]}]
   (or (and (>= healing-potion 0))
-      (throw (IllegalStateException "No more healing potion."))))
+      (throw (IllegalStateException. "No more healing potion."))))
 
-(def character-1 (ref {:health 15}))
-(def character-2 (ref {:healing-potion 1}))
+(def character-1 (ref {:health 15} :validator v-for-character-1))
+(def character-2 (ref {:healing-potion 5} :validator v-for-character-2))
 
 (defn healing
   [person-1 person-2]
@@ -100,3 +100,4 @@
 ;;test
 @character-1
 @character-2
+
