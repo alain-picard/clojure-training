@@ -48,8 +48,7 @@ character of PAIR"
 (defn straight-flush?
   "Returns if all pairs in HAND are sequential and are of the same suit"
   [hand]
-  (and (flush? hand) (straight? hand))
-  )
+  (and (flush? hand) (straight? hand)))
 
 (defn full-house?
   "returns a truthy value if a full-house (3 pair + 2 pair) is in HAND
@@ -75,9 +74,7 @@ character of PAIR"
              (= (rest values) [0 1 2 3]))
       true
       ;; Else return if all values are sequential
-      (every? #{-1} (map - (rest values) values))
-      ))
-  )
+      (every? #{-1} (map - (rest values) values)))))
 
 (defn four-of-a-kind?
   "Returns a list containing containing 4 matching pairs (truthy) otherwise return nil"
