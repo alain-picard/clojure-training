@@ -2,9 +2,13 @@
 
 ;;Chapter 9 answers
 ;;Question 1
+(def bing-url "https://www.bing.com/search?q=")
+(def yahoo-url "https://au.search.yahoo.com/search?p=")
+(def yippy-url "https://www.yippy.com/search?query=")
+
 (defn bing-search
   [search-string]
-  (let [result (future (slurp (str "https://www.bing.com/search?q=" search-string)))]
+  (let [result (future (slurp (str bing-url search-string)))]
     (deref result 5000 "time out")))
 
 ;;test
@@ -13,12 +17,13 @@
 
 ;;Question 2
 (defn search-with-engine
+  "use Bing as default search engine"
   [search-string search-engine]
-  (cond (= search-engine "Yahoo") (let [result (future (slurp (str "https://au.search.yahoo.com/search?p=" search-string)))]
+  (cond (= search-engine "yahoo") (let [result (future (slurp (str yahoo-url search-string)))]
                                     (deref result 5000 "time out"))
-        (= search-engine "yippy") (let [result (future (slurp (str "https://www.yippy.com/search?query=" search-string)))]
+        (= search-engine "yippy") (let [result (future (slurp (str yippy-url search-string)))]
                                     (deref result 5000 "time out"))
-        :else (let [result (future (slurp (str "https://www.bing.com/search?q=" search-string)))]
+        :else (let [result (future (slurp (str bing-search search-string)))]
                 (deref result 5000 "time out"))))
 
 ;;test
@@ -59,7 +64,7 @@
             (swap! total-word-count (fn [current-value] (+ current-value quote-count))))))
 
 (defn quote-word-count
-  "create new threads recursively and after that deref it to make sure all futures are done before return the final result"
+  "create new threads recursively and after that derefing it to make sure all futures are done before return the final result"
   [number-of-quotes]
   (if (<= number-of-quotes 0)
     true
@@ -74,19 +79,19 @@
 
 
 ;;Question 3
-(defn v-for-character-1
+(defn validator-for-char-1
   [{:keys [health]}]
   (or (and (>= health 0)
            (<= health 40))
       (throw (IllegalStateException. "Character1 is Healthy."))))
 
-(defn v-for-character-2
+(defn validator-for-char-2
   [{:keys [healing-potion]}]
   (or (and (>= healing-potion 0))
-      (throw (IllegalStateException. "No more healing potion."))))
+      (throw (IllegalStateException. "No more healing potions."))))
 
-(def character-1 (ref {:health 15} :validator v-for-character-1))
-(def character-2 (ref {:healing-potion 5} :validator v-for-character-2))
+(def character-1 (ref {:health 15} :validator validator-for-char-1))
+(def character-2 (ref {:healing-potion 5} :validator validator-for-char-2))
 
 (defn healing
   [person-1 person-2]
