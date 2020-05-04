@@ -162,6 +162,11 @@ We are going to make extensive use of the following:
    These exercises are longer and more challenging than the ones you have
    done so far.  Don't hesitate to reach out on the issues board!
 
+** Lesson 5
+ The assignments are now located in the lesson plan file.  See [[file:doc/lesson-05.org::*Assignments][Assignments]].
+
+
+
 * Legalese
 
 Copyright © 2020 Alain Picard Consulting.  

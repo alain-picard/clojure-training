@@ -50,6 +50,9 @@
   (mapv second
         (re-seq #"href=\"(http://[=?.:/\w]+)" s)))
 
+(->> " foo href=\"https://blah.com\"  and href=\"http://foo.com\"  "
+ (re-seq #"href=\"(https?://[=?.:/\w]+)" ))
+
 (defn get-urls [term & engines]
   (into []
         (flatten
