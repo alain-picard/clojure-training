@@ -1,0 +1,30 @@
+* Lesson 6: Clojure odds and ends
+
+ - [ ] writing good docstrings
+ - [ ] metadata
+ - [ ] strings; regexes
+ - [ ] throw/catch
+ - [ ] multimethods
+ - [ ] finding and using libraries
+ - [ ] supply a list of recommended good libs.
+ - [ ] reader syntax
+
+* Preparatory Material for Lesson 6
+
+
+Lesson goals: This week we'll
+
+ - Read chapter 13
+ - Koans 23, 27
+
+* Lesson plan
+** Is my emacs full screen with big fonts?  Are we recording?  Screen keys on?
+** Discuss problem solutions --- see these points:
+ - points?
+
+
+** Things to explain
+ Go through [[file:~/Consulting/clients/gojee/work/clojure-training/src/clojure_training/lesson06.clj][lesson_06.clj]]
+
+
+See you all soon!

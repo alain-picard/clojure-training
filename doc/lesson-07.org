@@ -1,0 +1,19 @@
+* Lesson 7: A simple HTTP service
+
+ - [ ] Simple HTTP service: ring handlers, libraries
+
+* Preparatory Material for Lesson 6
+
+
+
+* Lesson plan
+** Is my emacs full screen with big fonts?  Are we recording?  Screen keys on?
+** Discuss problem solutions --- see these points:
+ - points?
+
+
+** Things to explain
+ Go through [[file:~/Consulting/clients/gojee/work/clojure-training/src/clojure_training/lesson07.clj][lesson_07.clj]]
+
+
+See you all soon!
