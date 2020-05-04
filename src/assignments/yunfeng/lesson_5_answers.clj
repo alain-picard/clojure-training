@@ -7,6 +7,7 @@
 (def yippy-url "https://www.yippy.com/search?query=")
 
 (defn bing-search
+  "Return the HTML of the first page returned by search"
   [search-string]
   (let [result (future (slurp (str bing-url search-string)))]
     (deref result 5000 "time out")))
@@ -17,13 +18,13 @@
 
 ;;Question 2
 (defn search-with-engine
-  "use Bing as default search engine"
+  "Spectify which engin to use. Use Bing as default search engine."
   [search-string search-engine]
   (cond (= search-engine "yahoo") (let [result (future (slurp (str yahoo-url search-string)))]
                                     (deref result 5000 "time out"))
         (= search-engine "yippy") (let [result (future (slurp (str yippy-url search-string)))]
                                     (deref result 5000 "time out"))
-        :else (let [result (future (slurp (str bing-search search-string)))]
+        :else (let [result (future (slurp (str bing-url "search-string")))]
                 (deref result 5000 "time out"))))
 
 ;;test
@@ -32,6 +33,7 @@
 
 ;;Question 3
 (defn search-result-urls
+  "Return a vector of URLs from the first page"
   [search-string search-engine]
   (->> (search-with-engine search-string search-engine)
        (re-seq #"href=\"http[^\"<]*")
@@ -64,7 +66,7 @@
             (swap! total-word-count (fn [current-value] (+ current-value quote-count))))))
 
 (defn quote-word-count
-  "create new threads recursively and after that derefing it to make sure all futures are done before return the final result"
+  "Return the total word count for a number of quotes"
   [number-of-quotes]
   (if (<= number-of-quotes 0)
     true
@@ -94,6 +96,7 @@
 (def character-2 (ref {:healing-potion 5} :validator validator-for-char-2))
 
 (defn healing
+  "model the consumption of the healing potion and the first character healing"
   [person-1 person-2]
   (dosync ((alter person-1 #(assoc % :health (if (and (> (:health %) 30) (< (:health %) 40))
                                                40
