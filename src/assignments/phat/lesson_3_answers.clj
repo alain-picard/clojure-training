@@ -1,13 +1,11 @@
-(ns lesson-3-answers.core)
-(require '[clojure.string :as str])
+(ns src.assignments.phat.lesson-3-answers)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; 
 ;; 128 - Recognize Playing Cards
 
 ;; define maps for suit and rank
-;; split input string into 2 parts
-;; first part is a key in suit
-;; second part is a key in rank
+;; first part of the string is a key in suit
+;; second part of the string is a key in rank
 
 (defn recognize-card
   "Take a string and convert into a map of suit and rank"
@@ -19,8 +17,9 @@
         card-rank {"2" 0 "3" 1 "4" 2 "5" 3 "6" 4 
                    "7" 5 "8" 6 "9" 7 "T" 8 "J" 9
                    "Q" 10 "K" 11 "A" 12}]
-    (hash-map :suit (suit (first (str/split card #"")))
-              :rank (card-rank (last (str/split card #""))))))
+    {:suit (suit (str (first card)))
+     :rank (card-rank (str (second card)))}))
+
 
 ;; tests
 (= {:suit :diamond :rank 10} (recognize-card "DQ"))
@@ -53,32 +52,6 @@
     (count x)))
 
 
-(defn straight-flush?
-  "All cards in the same suit, and in sequence"
-  [card-coll]
-  (and (= 1 (count (keys (sort-cards card-coll :suit))))
-       (continuous-sequence? 
-        (sort < (keys (sort-cards card-coll :rank))))))
-
-
-(defn four-of-a-kind?
-  "Four of the cards have the same rank"
-  [card-coll]
-  (if (some #(= 4 %) (count-ranks card-coll))
-    true
-    false))
-
-
-(defn full-house?
-  "Three cards of one rank, the other two of another rank"
-  [card-coll]
-  (let [counts (count-ranks card-coll)]
-    (if (and (some #(= 3 %) counts)
-             (some #(= 2 %) counts))
-      true
-      false)))
-
-
 (defn flush?
   "All cards in the same suit"
   [card-coll]
@@ -93,25 +66,42 @@
       true
       (continuous-sequence? seq))))
 
+(defn straight-flush?
+  "All cards in the same suit, and in sequence"
+  [card-coll]
+  (and (flush? card-coll) (straight? card-coll)))
+
+
+(defn four-of-a-kind?
+  "Four of the cards have the same rank"
+  [card-coll]
+  (some #(= 4 %) (count-ranks card-coll)))
+
 
 (defn three-of-a-kind?
   "Three of the cards have the same rank"
   [card-coll]
-  (if (some #(= 3 %) (count-ranks card-coll))
-    true
-    false))
-
-
-(defn two-pair?
-  "Two pairs of cards have the same rank"
-  [card-coll]
-  (= 2 ((frequencies (count-ranks card-coll)) 2)))
+  (some #(= 3 %) (count-ranks card-coll)))
 
 
 (defn pair?
   "Two cards have the same rank"
   [card-coll]
   (= 1 ((frequencies (count-ranks card-coll)) 2)))
+
+
+(defn full-house?
+  "Three cards of one rank, the other two of another rank"
+  [card-coll]
+  (let [counts (count-ranks card-coll)]
+    (and (pair? card-coll)
+         (three-of-a-kind? card-coll))))
+
+
+(defn two-pair?
+  "Two pairs of cards have the same rank"
+  [card-coll]
+  (= 2 ((frequencies (count-ranks card-coll)) 2)))
 
 
 (defn best-hand
