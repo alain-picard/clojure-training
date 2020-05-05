@@ -1,13 +1,13 @@
 * Lesson 6: Clojure odds and ends
 
  - [ ] writing good docstrings
- - [ ] linting with kondo; emacs integration  
  - [ ] metadata
  - [ ] strings; regexes
  - [ ] throw/catch
  - [ ] multimethods
  - [ ] finding and using libraries
  - [ ] supply a list of recommended good libs.
+ - [ ] linting with kondo; emacs integration  
 
 * Preparatory Material for Lesson 6
 
