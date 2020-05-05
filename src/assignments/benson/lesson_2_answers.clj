@@ -37,8 +37,20 @@
    (f (get-in m k))))
 
 
+;; Implements get-in function
+(defn get-in-custom
+  ([m ks]
+   (reduce get m ks))
+  ;; Returns default message if result is nil
+  ([m ks default]
+   (let [result (reduce get m ks)]
+     (if result
+       result
+       default))))
+
+
 ;; Finds and returns sets of anagrams encapsulated in a set
-(defn find-anagram
+(defn group-by-anagram
   [words]
   (->> (reduce
         ;; Function that associates the original word to a key made from the sorted
@@ -57,3 +69,36 @@
        (vals)
        (filter #(>= (count %) 2))
        (into #{})))
+
+
+;; Returns all consecutive subsequences as nested vectors
+(defn get-consecutive-subseqs
+  [seqs]
+  (reduce
+   ;; Function that groups subsequences as nested vectors together in a vector
+   (fn [seqs number]
+     ;; If the current number is larger than the previous number by one (in consecutive sequence)
+     ;; Then conjoin it to the last nested vector
+     ;; Else associate a new nested vector containing the number at the end
+     (if (> number (last (last seqs)))
+       (assoc-in seqs [(dec (count seqs))] (conj (last seqs) number))
+       (assoc-in seqs [(count seqs)] [number])))
+   [[(first seqs)]] ; Initialize the first vector
+   (rest seqs))) ; Pass in the rest of the sequence
+
+;; Returns the first instance of the longest subsequences
+(defn longest-increasing-subseq
+  [seqs]
+  (as-> (get-consecutive-subseqs seqs) seqs ; consecutive subsequences to be filtered
+    (first
+     (filter 
+      ;; Filters to largest subsequences 
+      ;; and removes subsequences if the largest subsequence is size 1
+      #(and 
+        (= (count %) (count (last (sort seqs))))
+        (> (count %) 1))
+      seqs))
+    ;; If there is no subsequence return an empty vector
+    (if (nil? seqs)
+      []
+      seqs)))
