@@ -35,6 +35,20 @@ me to review your code and merge it back into the main repo.  Thus,
 you'll be able to view your colleague's solutions after I merge your
 answers back into the main repo.
 
+*REVIEWING ALAIN'S SOLUTIONS*
+
+After the lessons, I will place my solutions in [[file:src/assignments/alain/][this directory]]. You
+can peruse them at your leisure and compare against the code
+you have written.
+
+I will also place the code I present during the live coding
+sessions [[file:src/clojure_training/][in here]]; the files beginning with live_XXX are the code
+you see on the screen during the presentation; the files without the
+live_ prefix are the preparatory material I produce (which is close,
+but doesn't include the tangents I go off on during the lessons as
+questions arise, /etc./)
+
+
 * Material we plan to get through, eventually
 
  - [X] how to get help
@@ -62,14 +76,14 @@ answers back into the main repo.
  - [ ] strings; regexes
  - [ ] throw/catch
  - [ ] multimethods
- - [ ] Simple HTTP service: ring handlers, libraries
  - [ ] finding and using libraries
  - [ ] supply a list of recommended good libs.
  - [ ] reader syntax
- - [ ] macros, threading macros
+ - [ ] Simple HTTP service: ring handlers, libraries
  - [ ] core.async
  - [ ] clojurescript
  - [ ] reframe
+ - [ ] macros, threading macros
 
 * Resources
 
