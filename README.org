@@ -53,10 +53,10 @@ answers back into the main repo.
  - [X] The philosophical underpinning of state handling in clojure
  - [X] vars, atoms, refs, agents
  - [X] threads, futures, promises (concurrency primitives)
- - [ ] The reader, it's syntax, and brief macro overview
- - [ ] java interop, definining new types
- - [ ] namespaces, the ns macro
- - [ ] i/o
+ - [X] The reader, it's syntax, and brief macro overview
+ - [X] java interop, definining new types
+ - [X] namespaces, the ns macro
+ - [X] i/o
  - [ ] writing (good!) docstrings
  - [ ] metadata
  - [ ] strings; regexes
@@ -86,7 +86,7 @@ We are going to make extensive use of the following:
   - [[file:doc/lesson-04.org::*Lesson%20Goals][Lesson 4]] :: References and identities, threads
   - [[file:doc/lesson-05.org::*Lesson%20Goals][Lesson 5]] :: Java interop, namespaces, i/o
   - Lesson 6 :: Clojure odds and ends
-  - Lesson 7 :: Building a simple HTTP service
+  - Lesson 7 :: Building a simple HTTP service - Guess the right number!
   - Lesson 8 :: Clojure as a lisp: macros [DEFER? SKIP?]
   - Lesson 9 :: core.async
   - Lesson 10 :: Clojurescript
