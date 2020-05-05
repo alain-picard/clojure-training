@@ -31,10 +31,9 @@
    that matches the REGEX pattern"
   [filepath regex]
   (with-open [rdr (clojure.java.io/reader filepath)]
-    (let [parsed-regex (format-regex regex)]
-      (re-seq-lines
-       (into [] (line-seq rdr))
-       parsed-regex))))
+    (re-seq-lines
+     (into [] (line-seq rdr))
+     (format-regex regex))))
 
 (defn re-seq-lines
   "Returns a vector of sentences from TEXT which matches the REGEX pattern"
@@ -83,7 +82,7 @@
   [^java.io.BufferedReader rdr
    regex]
   (when-let [line (.readLine rdr)]
-    (if (re-seq #"Clojure" line)
+    (if (re-seq regex line)
       (cons line (lazy-seq (line-seq-pattern rdr regex)))
       (lazy-seq (line-seq-pattern rdr regex)))))
 
