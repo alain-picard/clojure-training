@@ -1,6 +1,8 @@
-(ns assignments.benson.advent_2018.task1)
+(ns assignments.benson.advent-2018.task1)
 
 (declare map-calculation)
+
+;;;; ------------------ Part 1 ------------------
 
 (def input (slurp "src/assignments/benson/advent_2018/task1input"))
 
@@ -13,7 +15,7 @@
 
 ; (calculate-frequency calculations) => 486
 
-
+;;;; ------------------ Part 2 ------------------
 
 ;; Always overflows???
 (defn first-double-frequency-via-recursion
