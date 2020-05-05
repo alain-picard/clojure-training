@@ -1,9 +1,9 @@
 * Lesson Goals
 
- - [ ] The reader, it's syntax, and brief macro overview
- - [ ] java interop, definining new types
- - [ ] namespaces, the ns macro
- - [ ] i/o
+ - [X] The reader, it's syntax, and brief macro overview
+ - [X] java interop, definining new types
+ - [X] namespaces, the ns macro
+ - [X] i/o
 
 
 * Preparatory Material for Lesson 5
