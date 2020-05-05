@@ -6,14 +6,16 @@
 (def yahoo-url "https://au.search.yahoo.com/search?p=")
 (def yippy-url "https://www.yippy.com/search?query=")
 
-(defn bing-search
+(defn search
   "Return the HTML of the first page returned by search"
   [search-string]
-  (let [result (future (slurp (str bing-url search-string)))]
+  (let [result (promise)]
+    (doseq [url [bing-url yahoo-url yippy-url]]
+      (future (deliver result [url (slurp (str url search-string))])))
     (deref result 5000 "time out")))
 
 ;;test
-(bing-search "game")
+(search "game")
 
 
 ;;Question 2
@@ -27,6 +29,7 @@
         :else (let [result (future (slurp (str bing-url "search-string")))]
                 (deref result 5000 "time out"))))
 
+(map + [1] [2])
 ;;test
 (search-with-engine "hehe" "Bing")
 
@@ -60,24 +63,20 @@
   (let [quote (slurp "https://www.braveclojure.com/random-quote")]
     (count (string/split quote #" "))))
 
-(defn update-total-count
-  []
-  (future (let [quote-count (download-and-count-one-quote)]
-            (swap! total-word-count (fn [current-value] (+ current-value quote-count))))))
-
 (defn quote-word-count
   "Return the total word count for a number of quotes"
   [number-of-quotes]
-  (if (<= number-of-quotes 0)
-    true
-    (let [create-new-download (update-total-count)]
-      (quote-word-count (- number-of-quotes 1))
-      @create-new-download
-      @total-word-count)))
+  (let [result (atom {:count 0 :counter 0}) finished? (promise)]
+    (dotimes [i 5]
+      (future
+        (let [quote-count (download-and-count-one-quote)]
+          (swap! result (fn [{count :count counter :counter}] {:count (+ count quote-count) :counter (inc counter)})))
+        (when (= number-of-quotes (:counter @result))
+          (deliver finished? true))))
+    (and @finished? (:count @result))))
 
 ;;test
-(time (quote-word-count 4))
-(swap! total-word-count (fn [current-value] 0))
+(time (quote-word-count 10))
 
 
 ;;Question 3
