@@ -6,7 +6,8 @@
 
 (def calculations (map read-string (clojure.string/split input #"\r\n")))
 
-(defn calculate-frequency 
+(defn calculate-frequency
+  "Returns the summation of all frequencies"
   [calculations]
   (reduce + calculations))
 
