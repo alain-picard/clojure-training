@@ -35,6 +35,20 @@ me to review your code and merge it back into the main repo.  Thus,
 you'll be able to view your colleague's solutions after I merge your
 answers back into the main repo.
 
+*REVIEWING ALAIN'S SOLUTIONS*
+
+After the lessons, I will place my solutions in [[file:src/assignments/alain/][this directory]]. You
+can peruse them at your leisure and compare against the code
+you have written.
+
+I will also place the code I present during the live coding
+sessions [[file:src/clojure_training/][in here]]; the files beginning with live_XXX are the code
+you see on the screen during the presentation; the files without the
+live_ prefix are the preparatory material I produce (which is close,
+but doesn't include the tangents I go off on during the lessons as
+questions arise, /etc./)
+
+
 * Material we plan to get through, eventually
 
  - [X] how to get help
@@ -47,27 +61,29 @@ answers back into the main repo.
  - [X] lexical vs dynamic scoping
  - [X] reduce, functional idioms
  - [X] tracing, debugging
- - [X] writing docstrings
  - [X] writing tests
  - [X] Introduction to =leiningen=, dependency management,
        and finding and using libraries in clojure.
- - [ ] The philosophical underpinning of state handling in clojure
- - [ ] vars, atoms, refs, agents
- - [ ] threads, futures, promises (concurrency primitives)
- - [ ] java interop
- - [ ] namespaces, the ns macro
- - [ ] i/o
+ - [X] The philosophical underpinning of state handling in clojure
+ - [X] vars, atoms, refs, agents
+ - [X] threads, futures, promises (concurrency primitives)
+ - [X] The reader, it's syntax, and brief macro overview
+ - [X] java interop, definining new types
+ - [X] namespaces, the ns macro
+ - [X] i/o
+ - [ ] writing (good!) docstrings
+ - [ ] metadata
  - [ ] strings; regexes
  - [ ] throw/catch
  - [ ] multimethods
  - [ ] finding and using libraries
  - [ ] supply a list of recommended good libs.
  - [ ] reader syntax
- - [ ] macros, threading macros
- - [ ] ring handlers, libraries
+ - [ ] Simple HTTP service: ring handlers, libraries
  - [ ] core.async
  - [ ] clojurescript
  - [ ] reframe
+ - [ ] macros, threading macros
 
 * Resources
 
@@ -78,10 +94,21 @@ We are going to make extensive use of the following:
  - Many of the excellent at [[http://www.4clojure.com/problems][4clojure sample problems]]
 
 * Lesson Plans
-  - [[file:doc/lesson-01.org::*Introductory%20email][Lesson 1]]
-  - [[file:doc/lesson-02.org::*Lesson%20Goals][Lesson 2]]
-  - [[file:doc/lesson-03.org::*Lesson%20Goals][Lesson 3]]
-  - [[file:doc/lesson-04.org::*Lesson%20Goals][Lesson 4]]
+  - [[file:doc/lesson-01.org::*Introductory%20email][Lesson 1]] :: intro 
+  - [[file:doc/lesson-02.org::*Lesson%20Goals][Lesson 2]] :: Functional Programming
+  - [[file:doc/lesson-03.org::*Lesson%20Goals][Lesson 3]] :: More functional programming
+  - [[file:doc/lesson-04.org::*Lesson%20Goals][Lesson 4]] :: References and identities, threads
+  - [[file:doc/lesson-05.org::*Lesson%20Goals][Lesson 5]] :: Java interop, namespaces, i/o
+  - [[file:doc/lesson-06.org::*Lesson%20Goals][Lesson 6]] :: Clojure odds and ends
+  - Lesson 7 :: Building a simple HTTP service - Guess the right number!
+  - Lesson 8 :: Clojure as a lisp: macros [DEFER? SKIP?]
+  - Lesson 9 :: core.async
+  - Lesson 10 :: Clojurescript
+  - Lesson 11 :: Re-Frame
+  - Lesson 12 :: The word puzzle (part 1)
+  - Lesson 13 :: The word puzzle (part 2)
+
+
 
 * Assignments
 
@@ -148,6 +175,11 @@ We are going to make extensive use of the following:
 
    These exercises are longer and more challenging than the ones you have
    done so far.  Don't hesitate to reach out on the issues board!
+
+** Lesson 5
+ The assignments are now located in the lesson plan file.  See [[file:doc/lesson-05.org::*Assignments][Assignments]].
+
+
 
 * Legalese
 

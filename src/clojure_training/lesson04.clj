@@ -3,10 +3,30 @@
 ;;;; Lesson plan:
 ;; - ask for completed assignments by lunchtime on the day
 ;;   of lesson, so I can review.
+;;
+;; - suggest 1 on 1
+;;
+;; - suggest partial solutions, leave questions in PRs or issues
+;;
+;; - ask for comments/questions on what they'd like to see
+;;   in material or preparation.
+;;
+;; - Review a couple of misunderstandings:
+;;   explain about maps, what's the key, what's the value,
+;;   key isn't same as keyword,
+;;   maps and sets (all colls, actually) as functions
+;;
+;; - Another misunderstanding about booleans:
+;;   There is no virtue in returning true explicitly
+;;   instead of "any truthy value".
+;;
 ;; - Field questions about poker assignments.
+;;
 ;; - review AP's solution, if interest is shown
 ;;
-
+;; - get on with this lecture's new material!
+;;
+;; -
 
 
 
@@ -142,6 +162,38 @@
    (io!
     (alter gold-members conj "Alain"))))
 
+
+;;;; Agents
+
+;; Allow uncoordinated, atomic change
+
+(def james-bond (agent {:kills 0 :victims #{}}))
+
+(defn murder [spy victim]
+  (-> spy
+      (update :kills inc)
+      (update :victims conj victim)))
+
+(send james-bond murder "Dr. No")
+
+james-bond
+
+(send james-bond murder "Goldfinger")
+
+;; We'll see later, with threads, how this can be used.
+;; One interesting property: SENDs are held off until the
+;; end of a txn, so
+
+;; Also send-off.
+
+
+(comment
+ (dosync
+  (alter foo hack-hack)
+  (alter bar frobnicate)
+  ;; This will be safe!  We will get only 1 log message.
+  (send log-agent log "I managed to alter both foo and bar.")))
+
 
 
 ;;;;  Threading constructs.
@@ -199,6 +251,7 @@
       (println "In the future:")
       (println "We have " *foo*))))
 
+
 ;;;; Delays
 
 ;; Sort of like futures, but might never get executed
@@ -253,3 +306,6 @@
 ;; Note -- above! won't convey binding of specials!
 
 ;; Also, clojure.core.async, but we'll cover that later.
+
+;; If I have time:  Live  code some threads which watch
+;; agents, refs etc.

@@ -1,0 +1,74 @@
+* Lesson Goals
+
+ - [X] The reader, it's syntax, and brief macro overview
+ - [X] java interop, definining new types
+ - [X] namespaces, the ns macro
+ - [X] i/o
+
+
+* Preparatory Material for Lesson 5
+
+Lesson goals: This week we'll
+
+    - Attempt the problems assigned at the end of Lesson 4.
+      Raise a pull request when you are done.
+
+    - Read chapters 12 and 13 of [[https://www.braveclojure.com/clojure-for-the-brave-and-true/][Brave and True]].
+
+    - Solve the koans in files 19 and 20.
+
+    - Watch this online lecture by Rich Hickey, the designers
+      of the clojure language: [[http://www.infoq.com/presentations/Simple-Made-Easy][Simple Made Easy]]
+
+      Listen from an expert how to avoid accidental complexity.
+
+      Write down all comments and questions you have about this talk so we
+      can all discuss them together.
+     
+* Lesson plan
+** Is my emacs full screen with big fonts?  Are we recording?  Screen keys on?
+** Discuss problem solutions --- see these points:
+ - points?
+
+
+** Things to explain
+ Go through [[file:~/Consulting/clients/gojee/work/clojure-training/src/clojure_training/lesson05.clj][lesson_05.clj]]
+
+ - The various interop macros
+ - Run the inspector on a java object, see the java interfaces
+ - Set up your tooling for javadoc
+ - discuss clojure.lang.PersistentQueue/EMPTY
+
+
+* Assignments
+
+ - Read chapter 6, specially the ns macro
+
+ - write a unix-like grep command in clojure, so that, e.g.
+ #+begin_src clojure
+   (grep "/tmp/somefile.txt" regex)
+   ;; =>
+   ["match 1" "match 2" "..."]
+ #+end_src
+
+ - for extra difficulty, make it return a lazy sequence of
+   matches instead.  What difficulties does this present?  
+   Which version is better/more useful? Can you implement
+   the former in terms of the latter?  Discuss.
+
+ - You now know >90% of clojure syntax and functions, so you
+   should start exercising your newfound powers as much as possible.
+   Practice makes perfect!  Here are some problem ideas for you to try:
+   The Advent of code is always fun; the last 2 years had good problems.
+   You can try to get as far as you can on these:
+   - https://adventofcode.com/2018
+   - https://adventofcode.com/2019
+
+   Solve as many of the [[http://www.4clojure.com/problems][4 clojure]] problems as you can; they are arranged
+   either by topic or difficulty.  Try those which you understand least!
+   Don't be afraid to call out for help!
+
+
+See you all soon!
+
+
