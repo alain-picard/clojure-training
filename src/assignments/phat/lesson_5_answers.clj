@@ -143,12 +143,40 @@
                          (= 2 first) (* (get @input-seq second)
                                        (get @input-seq third)))]
         (swap! input-seq modify-value (last x) output)))
-    @input-seq))
+    (first @input-seq)))
 
 (intcode input-seq) ;=> 3516593
 
 ;;;;;;;;;
 ;; part 2
+;; didn't quite understand the specification in this part so I had to refer to some other sources and solutions such as this https://fossheim.io/writing/posts/adventofcode19-day2/
 
-;; to be finished
+;; modify the previous function a bit
+(defn intcode
+  "Takes a sequence of input and decodes it restore the gravity assist program to the \"1202 program alarm\" just before the last computer caught fire" 
+  [seq]
+  (let [input-seq (atom seq)]
+    (doseq [x (partition 4 @input-seq)
+            :while (not= 99 (first x))]
+      (let [first (first x)
+            second (second x)
+            third (nth x 2)
+            output (cond (= 1 first) (+ (get @input-seq second)
+                                       (get @input-seq third))
+                         (= 2 first) (* (get @input-seq second)
+                                       (get @input-seq third)))]
+        (swap! input-seq modify-value (last x) output)))
+    (first @input-seq)))
 
+;; I don't make a function here yet since I haven't found a way to return the output from the nested loop
+(loop [noun 0]
+  (when (< noun 100)
+    (loop [verb 0]
+      (when (< verb 100)
+        (let [new-seq (assoc input-seq 1 noun 2 verb)
+              output (intcode new-seq)]
+          (if (= 19690720 output)
+            (println (+ (* 100 noun) verb))))
+        (recur (+ verb 1))))
+    (recur (+ noun 1)))) 
+;=> 7749
