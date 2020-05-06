@@ -51,7 +51,7 @@
 ;; Where the heck did all this stuff come from?  What's it for?
 
 (defn  ^Integer foo-bar
-  "Does some foo thang to them bar doohickies"
+  "Do some foo thang to them bar doohickies"
   {:inventor "Doc Brown"}
   [x y]
   (Integer. (+ x y 2)))
@@ -258,6 +258,10 @@
 ;;
 ;; This shows us that reading the source is always useful.
 ;;
+
+;;;; Libraries
+;;
+;;
 ;; Another nice library is `superstring`
 ;; (:require [superstring "3.0.0"])
 ;; Has nice property that it just re-aliases all of clojure.string,
@@ -317,9 +321,10 @@
 
 (csk/->kebab-case-keyword "FooBar")
 
+(csk/->camelCaseString :some-resource) ; etc.
 
 
-;;; clj-http
+;;; clj-http  -- an HTTP client
 ;;
 ;; curl https://api.stripe.com/v1/charges -u sk_test_4eC39HqLyjWDarjtT1zdp7dc:
 (def response
@@ -452,5 +457,53 @@
           vending-machine
           events))
 
+
+;;;; Finding good libraries
 
-;;;;;;;;;;;;;;;;;;;;;;;
+;; Unfortunately hard; lots of libs, which ones are any good?
+
+;; https://www.clojure-toolbox.com
+;;
+;; - Many of the libs under https://github.com/clj-commons, such as
+;;   - useful (more utils, like Medley)
+;;   - fs Sane access to the file system; mainly Java wrappers
+;;   - ring-buffer A oft-used structure
+
+
+;;;; Docstrings
+
+;; Some examples so far:
+(def search-engines {:bing "https://www.bing.com/search?q="
+                     :yahoo "https://au.search.yahoo.com/search?p="
+                     :yippy "https://www.yippy.com/search?query="})
+
+(defn search
+  "return the first page of result from search engines"
+  [text]
+  (let [result (promise)]
+    (doseq [search-engine (vals search-engines)]
+      (future (if-let [results-page (slurp (str search-engine text))]
+                (deliver result results-page))))
+    @result))
+
+;; c.f.
+
+(def search-engines
+  "The online search engines available to the FOOBAR software.
+
+  The value should be a map, with values consisting of the string
+  prefix required to form a valid URL to be sent to the engine."
+  {:bing "https://www.bing.com/search?q="
+   :yahoo "https://au.search.yahoo.com/search?p="
+   :yippy "https://www.yippy.com/search?query="})
+
+(defn search
+  "Return the search results of text.
+
+  Each engine in `search-engines` will be searched, and the results
+  of the first one to respond will be returned."
+  [text]
+  ;; elided
+)
+
+;; Note how we can cross-ref other functions and vars?
