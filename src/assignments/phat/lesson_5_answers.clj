@@ -38,7 +38,7 @@
 
 
 ;; i'm not too sure with the solution here since the doall forces the sequence resulted from map to be relized
-;; but the function does returns a lazy sequence!!
+;; but the function does return a lazy sequence!!
 (class (lazy-grep file "\\w+"))
 
 
@@ -49,7 +49,7 @@
 
 
 ;; Can you implement the former in terms of the latter? Discuss.
-;; what if we wrap the former function in a lazy sequence? does this answers the question?
+;; what if we wrap the former function in a lazy sequence? does this answer the question?
 
 (defn lz-not-lazy-grep
   "Returns a lz-sequence of matches of pattern in a file"
@@ -149,4 +149,6 @@
 
 ;;;;;;;;;
 ;; part 2
+
+;; to be finished
 
