@@ -3,9 +3,11 @@
  - [ ] writing good docstrings
  - [ ] metadata
  - [ ] strings; regexes
- - [ ] throw/catch
+ - [ ] throw/catch; slingshot
+ - [ ] making simple HTTP requests
  - [ ] multimethods
  - [ ] finding and using libraries
+ - [ ] browsing namespaces  
  - [ ] supply a list of recommended good libs.
  - [ ] linting with kondo; emacs integration  
 
@@ -25,14 +27,21 @@ Lesson goals: This week we'll
 
 ** Some useful libraries to look at
 
+ - clj-http
  - cheschire, camel-snake-kebab, parsing json
  - medley (utilities)
  - timbre (logging)
+ - superstring
  - Many of the libs under https://github.com/clj-commons, such as
    - useful
    - fs
    - ring-buffer
+ - The clj toolbox
  - Clone and have a look at [[https://github.com/clojure-cookbook/clojure-cookbook][The Clojure Cookbook]]!  It's free!
+
+* What's next?
+ - Everyone should have a /good look/ at [[https://clojure.org/reference/documentation][the reference documentation]].  Really.
+ - 
 
 
 See you all soon!

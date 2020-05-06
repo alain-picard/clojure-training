@@ -1,4 +1,35 @@
-(ns clojure-training.lesson06)
+(ns clojure-training.lesson06
+  (:require [medley.core :as m]
+            [cheshire.core :as json]
+            [superstring.core :as s]
+            [camel-snake-kebab.core :as csk]
+            [clj-http.client :as http]
+            [slingshot.slingshot :refer [try+ throw+]]
+            [clojure.java.io :as io]))
+
+;;;;  Comments on assignments
+
+
+;; I got sent this:
+(defn format-regex
+  "Returns an executable regex from REGEX"
+  [regex]
+  (read-string (str "#\"" regex "\"")))
+
+;; First comment is; this function exists:
+(re-pattern ".*Clojure.*")
+
+
+;; But, more importantly, be wary of calling functions like READ-XXX
+;; as they are very slow, and usually not necessary.
+;; See if a constructor for they type you want to produce already exists.
+;; e.g.
+
+(java.util.regex.Pattern/compile ".*Clojure.*")
+
+
+
+
 
 
 ;;;; Metadata
@@ -69,3 +100,243 @@
 
 ;; ^:dynamic   -- declare dynamic vars
 ;; ^SomeType   -- type hint -- like ^{:tag java.lang.String}
+
+
+;;;; Exceptions; try/catch, slingshot
+
+;; The Java exception hierarchy:
+;; Show picture in ../../resources/java-exceptions.png
+;;
+;; EXCEPTION:  classic one is NullPointerException
+;; e.g.
+#_
+(+ 1 nil)
+
+;; RuntimeException ISA Exception
+;; so called "unchecked" exceptions; may be thrown even if not in
+;; the java method signature.  For clojure, this difference is not germane.
+
+;; Another example:
+#_
+(/ 1 0)
+
+;; And another
+#_
+(nth [1 2 3] 9)
+
+;; ERROR:  classic one is StackOverflowError:
+
+(defn foobar []
+  (foobar))
+
+#_
+(foobar)
+
+;; Catching Throwable?  hum...
+;; That includes things like AssertionError, OutOfMemoryError ...
+;; You program is most likely hosed.
+;; But NullPointerException /MAY/ also indicate a logic bug... so...
+
+;; In practice, it can get hard to decide what to handle and where.
+;; The rule to try to follow is this:
+;;
+;; - Throw an Error  (or one of its subclasses) if you cannot continue.
+;;   You'll probably never want to do this in clojure.
+;;
+;; - Throw an Exception (or one of its subclasses) if you CAN continue.
+;;   This is the normal case.
+;;
+;; - Catch Exception where it makes sense for the program to handle it
+;;   and continue in a sensible way.
+;;
+;; - Don't catch Error, except maybe to log and kill (or restart) the application.
+;;
+
+;;; That all being said:
+;;;    The mechanism:
+
+(defn bad-math [] (/ 1 0)) ; This isn't going to end well.  :-(
+
+;; We can try to catch everything:
+(try (bad-math)
+  (catch Exception e
+    (println "Oof!  We caught an: " e)
+    ;; Do some better math!
+    42))
+
+;; We can try to be specific:
+(try (bad-math)
+  ;; They get attempted in the order shown.  Demonstrate.
+  (catch java.lang.ArithmeticException e
+    (println "Oof!  Back to school for remedial math lessons: " (.getMessage e))
+    42)
+  (catch Exception e
+    (println "Oof!  We don't know what happened: " e)
+    nil))
+
+;; Sometimes, we don't want to catch the exception, but need to do some
+;; cleanup :
+
+(let [resource (atom {:some-resource :open})]
+  (def grabbed-resource-for-didactic-purposes resource) ; Don't do this!!
+  (try (bad-math)
+    ;; They get attempted in the order shown.  Demonstrate.
+    (finally
+      (swap! resource assoc :some-resource :closed))))
+
+;; This is more or less what the with-open macro does
+(with-open [f (io/reader "/tmp/foo")]
+  (bad-math)) ; Macroexpand this
+
+
+;;; We can throw our own exceptions:
+
+(throw (Exception. "Woops!"))
+
+;; As discussed, in clojure, it's a bit blurry what we want to
+;; catch and throw; so most of the time, if you "don't really care",
+;; you can use this functions:
+
+(instance? RuntimeException
+ (ex-info "Some bad situation" {:integer 42}))
+;; This throws a clojure.lang.ExceptionInfo, which is a RuntimeException.
+
+(try (throw (ex-info "Some bad situation" {:integer 42}))
+  (catch clojure.lang.ExceptionInfo e
+    (println "Data: "(ex-data e))
+    (println "Message: " (ex-message e))))
+
+
+;;; A better exception library: SLINGSHOT
+
+;; Catching/throwing ex-info is... bare bones and limiting.
+;; slingshot extends this idea
+
+;; This is straight from their documentation at: https://github.com/scgilardi/slingshot
+(declare bad-tree? parse-good-tree parse-tree)
+
+(defn parse-tree [tree hint]
+  (if (bad-tree? tree)
+    ;; We can throw any object; most usually a map:
+    (throw+ {:type ::bad-tree :tree tree :hint hint})
+    (parse-good-tree tree hint)))
+
+;; And then catch based on properties of this map:
+(defn read-file [file tree]
+  (try+
+    [...]
+    (tensor.parse/parse-tree tree)
+    [...]
+    (catch [:type ::bad-tree] {:keys [tree hint]}
+      ;; If we hit a bad tree we can destructure what was thrown
+      (log/error "failed to parse tensor" tree "with hint" hint)
+      ;; and rethrow if we need to.
+      (throw+))
+    (catch Object _
+      (log/error (:throwable &throw-context) "unexpected error")
+      (throw+))))
+
+;; We will see a live example below in an http request.
+
+
+;;;; Strings, regexes
+
+;; We can start with the 21 utilities in clojure.string:
+;; ------------------------------------------------------
+;;
+;; reverse                   triml
+;; re-quote-replacement      trimr
+;; replace                   trim-newline
+;; replace-first             blank?
+;; join                      escape
+;; capitalize                index-of
+;; upper-case                last-index-of
+;; lower-case                starts-with?
+;; split                     ends-with?
+;; split-lines               includes?
+;; trim
+;;
+;; This shows us that reading the source is always useful.
+;;
+;; Another nice library is `superstring`
+;; (:require [superstring "3.0.0"])
+;; Has nice property that it just re-aliases all of clojure.string,
+;;
+;; Contains such cool utilities as:
+;;    longest-common-substring
+;;    distance  (levenshtein distance)
+;;    chomp, chop (like Perl)
+;;    capitalize
+;;    camel-case, lisp-case etc (replacing camel-snake-kebab, which we'll see later)
+;;    trip, pad-left and right, etc.
+
+;; Another interesting one is "cuerdas"  (Spanish for rope, or string, I think?)
+
+;; I like both of these libs because they are cross compatible with clojurescript.
+;;
+
+;;; Medley
+;; Docs at: https://weavejester.github.io/medley/medley.core.html
+
+(m/abs -3) ; Really?  This doesn't exist in standard clojure??
+
+(let [foo (atom 17)]
+  [(m/deref-swap! foo + 3) @foo])       ; Useful, AND safe!
+
+(-> {:foo {:bar 7 :blah 9}}
+    (m/dissoc-in [:foo :bar]))
+
+;; Here's one everyone ends up writing eventually:
+(m/map-vals inc
+            {:foo 9
+             :bar 42
+             :blah 69})
+
+(m/update-existing {:foo 9
+                    :bar 42
+                    :blah 69}
+                   :bar
+                   inc)
+
+(m/update-existing {:foo 9
+                    :bar 42
+                    :blah 69}
+                   :missing
+                   inc) ; Doesn't raise an error.
+
+
+;; For more very, very hairy and powerful operations on nested structures,
+;; go look at the Spectre library.  Scary stuff!
+
+
+;; And tons of other useful things.  Go have a look!
+
+
+
+;;; camel-snake-kebab
+;;; Cheschire
+
+(csk/->kebab-case-keyword "FooBar")
+
+;; curl https://api.stripe.com/v1/charges -u sk_test_4eC39HqLyjWDarjtT1zdp7dc:
+(def response
+  (delay
+   (http/get "https://api.stripe.com/v1/charges"
+             {:basic-auth "sk_test_4eC39HqLyjWDarjtT1zdp7dc:"})))
+
+#_
+(print (:body response))
+
+#_
+(json/parse-string (:body response) csk/->kebab-case-keyword)
+
+
+(try+ (http/get "https://api.stripe.com/v1/charges" {:throw-entire-message? true})
+  (catch [:status 401] {:keys [request-time headers body]}
+    [401 request-time headers]
+    headers)) ; and then body
+
+
+
+
+;;;;;;;;;;;;;;;;;;;;;;;
