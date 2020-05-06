@@ -314,29 +314,143 @@
 
 
 ;;; camel-snake-kebab
-;;; Cheschire
 
 (csk/->kebab-case-keyword "FooBar")
 
+
+
+;;; clj-http
+;;
 ;; curl https://api.stripe.com/v1/charges -u sk_test_4eC39HqLyjWDarjtT1zdp7dc:
 (def response
   (delay
    (http/get "https://api.stripe.com/v1/charges"
              {:basic-auth "sk_test_4eC39HqLyjWDarjtT1zdp7dc:"})))
 
+;; We can't use slurp because we need to pass HTTP options...
+
 #_
 (print (:body response))
 
+;;; Cheschire  --- a fast JSON encoder/decoder
+
+#_
+(json/parse-string (:body response))
+
+
+;; And look how well these can play together:
 #_
 (json/parse-string (:body response) csk/->kebab-case-keyword)
 
 
+;; clj-http collaborates with slingshot (not many libraries do, unfortunately)
+
 (try+ (http/get "https://api.stripe.com/v1/charges" {:throw-entire-message? true})
+  ;; Status 401 is request unauthorized
   (catch [:status 401] {:keys [request-time headers body]}
     [401 request-time headers]
     headers)) ; and then body
 
+
+;;;; Multi methods
 
+;; Multiple dispatch, Object orientation "a la carte"
+
+(ns-unmap *ns* 'speak)                  ; What to do when you get in trouble
+
+(defmulti speak :type)
+
+(defmethod speak :dog [animal]
+  (str (:name animal) " says woof woof!"))
+
+(speak {:name "Fido" :type :dog})
+
+(speak {:name "Sylvester" :type :cat})
+
+(defmethod speak :default [animal]
+  (str (:name animal) " can't speak; don't be silly!"))
+
+(defmethod speak :cat [animal]
+  (str (:name animal) " says miao!"))
+
+;; This mimics standard, type-based single dispatch,
+;; with extension that we can define any predicate we like
+;; to decide "what kind" of thing is being dispatched on.
+;;
+;; But we can do more than this:  multiple dispatch!
+
+;; An interesting example: State machines
+
+;; Consider a vending machine, which accepts coins and
+;; drops a soda
+
+(def vending-machine {:state :start :coins []})
+
+(def price-of-soda 220)
+
+(defn coin-value [machine] (reduce + (:coins machine)))
+
+(ns-unmap *ns* 'handle)
+
+(defmulti handle (fn [machine event] [(:state machine) (:type event)]))
+
+(defmethod handle [:start :coin] [machine event]
+  (println "Getting a coin in the start state: " (:coin-value event) " cents.")
+  (-> machine
+      (assoc :state :accumulating-money)
+      (update :coins conj (:coin-value event))))
+
+(-> vending-machine
+    (handle {:type :coin :coin-value 20}))
+
+(defmethod handle [:accumulating-money :refund] [machine event]
+  (println "Getting a coin in the start state: " event)
+  (println "Refunding " (:coins machine))
+  vending-machine)
+
+
+;; Buyer changes his mind
+(-> vending-machine
+    (handle {:type :coin :coin-value 20})
+    (handle {:type :refund}))
+
+;; Buyer really wants that soda
+(-> vending-machine
+    (handle {:type :coin :coin-value 20})
+    (handle {:type :coin :coin-value 200}))
+
+;; Oops!  Let's implement it:
+(defmethod handle [:accumulating-money :coin] [machine event]
+  (println "Getting a coin in the accumulating state: " event)
+  (let [machine (-> machine
+                    (assoc :state :accumulating-money)
+                    (update :coins conj (:coin-value event)))]
+    (if (< (coin-value machine) price-of-soda)
+      machine
+      (do                               ; We have enough money!
+        (println "Disbursing delicious soda.")
+        vending-machine))))
+
+(-> vending-machine
+    (handle {:type :coin :coin-value 20})
+    (handle {:type :coin :coin-value 200}))
+
+;;; Assignment: Extend this machine so it can make proper change
+;;; if user pays too much.
+
+;; A common pattern with state machines:
+
+(let [events [{:type :coin :coin-value 20}
+              {:type :coin :coin-value 20}
+              {:type :coin :coin-value 200}
+              {:type :coin :coin-value 200}
+              {:type :coin :coin-value 200}
+              {:type :coin :coin-value 10}]]
+  ;; Now you can imagine events being an infinite lazy stream...
+  ;; and this can be the main of the entire program.
+  (reduce handle
+          vending-machine
+          events))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;
