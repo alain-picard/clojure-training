@@ -5,8 +5,8 @@
 ;;Non-lazy solution
 (defn construct-regex
   "construct a regex which trys to find any part of the string which matches the regex"
-  [regex-string]
-  (re-pattern (str regex-string ".*")))
+  [regex]
+  (re-pattern (str regex ".*")))
 
 (defn grep
   "return a non-lazy result"
@@ -15,7 +15,7 @@
     (->> (filter #(re-matches (construct-regex regex) %) (line-seq reader))
          (into []))))
 
-(grep "/Users/apple/Documents/GitHub/clojure-training/src/assignments/yunfeng/test.txt" "aaa")
+(grep "/Users/apple/Documents/GitHub/clojure-training/src/assignments/yunfeng/test.txt" #"aaa")
 
 
 ;;Two lazy solutions
@@ -26,7 +26,7 @@
   (->> (str/split (slurp file-path) #"\n")
        (filter #(re-matches (construct-regex regex) %))))
 
-(lazy-grep-1 "/Users/apple/Documents/GitHub/clojure-training/src/assignments/yunfeng/test.txt" "aaa")
+(lazy-grep-1 "/Users/apple/Documents/GitHub/clojure-training/src/assignments/yunfeng/test.txt" #"aaa")
 
 
 ;;Second solution
@@ -49,4 +49,4 @@
   [file-path regex]
   (filter #(re-matches (construct-regex regex) %) (lazy-open file-path)))
 
-(lazy-grep-2 "/Users/apple/Documents/GitHub/clojure-training/src/assignments/yunfeng/test.txt" "aaa")
+(lazy-grep-2 "/Users/apple/Documents/GitHub/clojure-training/src/assignments/yunfeng/test.txt" #"aaa")
