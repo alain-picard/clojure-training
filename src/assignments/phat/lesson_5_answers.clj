@@ -22,7 +22,6 @@
 
 (not-lazy-grep file (:digit regex-patterns))
 
-
 (defn lazy-grep 
   "Returns a lazy sequence of matches of a regex pattern from a file"
   [filepath regex]
@@ -64,8 +63,90 @@
 
 (class (lz-not-lazy-grep file "\\w+"))
 
-;; ====================================================
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Day 1 - Advent of Code 2019
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;;;;;;;;;
+;; part 1
+;; problem description: https://adventofcode.com/2019/day/1
+;; can not download input directly from this url: https://adventofcode.com/2019/day/1/input
+;; so I have to save the input in a text file
+(def inputfile "src/assignments/phat/tmp/adventofcode-day1-input.txt")
 
+(defn calculate-fuel
+  [mass]
+  (- (int (/ mass 3)) 2))
 
+(defn calculate-fuel-sum
+  "Takes an input file including a sequence of module's masses
+   and returns sum of fuel requirements for all of the modules"
+  [input]
+  (let [module-masses (map read-string (lazy-grep input "\\d+"))]
+    (reduce + (map calculate-fuel module-masses))))
+
+(calculate-fuel-sum inputfile)
+
+;;;;;;;;;
+;; part 2
+
+(defn total-module-fuel
+  "Takes a module's mass and returns total fuel requirement for that module"
+  [mass]
+  (loop [fuel (calculate-fuel mass)
+         total 0]
+    (if (>= 0 fuel)
+      total
+      (recur (calculate-fuel fuel) (+ total fuel)))))
+
+(defn total-added-fuel
+  "Takes an input file including a sequence of module's masses
+   and returns sum of fuel requirements including added fuel for all of the modules"
+  [input]
+  (let [module-masses (map read-string (lazy-grep input "\\d+"))]
+    (reduce + (map total-module-fuel module-masses))))
+
+(total-added-fuel inputfile)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Day 2 - Advent of Code 2019
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; problem description: https://adventofcode.com/2019/day/2
+
+;;;;;;;;;
+;; part 1
+(def day2-input "src/assignments/phat/tmp/adventofcode-day2-input.txt")
+(def input-seq (vec (map read-string (not-lazy-grep day2-input "\\d+"))))
+
+(defn modify-value
+  [coll pos val]
+  (assoc coll pos val))
+
+(defn intcode
+  "Takes a sequence of input and decodes it restore the gravity assist program to the \"1202 program alarm\" just before the last computer caught fire" 
+  [seq]
+  (let [input-seq (atom seq)]
+    ;; by instructions
+    ;; replace position 1 with the value 12 
+    ;; and replace position 2 with the value 2
+    (swap! input-seq modify-value 1 12)
+    (swap! input-seq modify-value 2 2)
+    
+    (doseq [x (partition 4 @input-seq)
+            :while (not= 99 (first x))]
+      (let [first (first x)
+            second (second x)
+            third (nth x 2)
+            output (cond (= 1 first) (+ (get @input-seq second)
+                                       (get @input-seq third))
+                         (= 2 first) (* (get @input-seq second)
+                                       (get @input-seq third)))]
+        (swap! input-seq modify-value (last x) output)))
+    @input-seq))
+
+(intcode input-seq) ;=> 3516593
+
+;;;;;;;;;
+;; part 2
 
