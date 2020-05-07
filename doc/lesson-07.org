@@ -1,9 +1,44 @@
 * Lesson 7: A simple HTTP service
 
  - [ ] Simple HTTP service: ring handlers, libraries
+ - [ ] What is a request?  What is a response?
+ - [ ] Routing
+ - [ ] Middlewares
+ - [ ] A toy problem: Guess what number I'm thinking?
 
-* Preparatory Material for Lesson 6
+* Preparatory Material for Lesson 7
 
+ - Read [[https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol][Hypertext_Transfer_Protocol]], in particular the section on [[https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol#Message_format][Message Format]]
+   and the [[https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol#Example_session][example session]].
+ - Read https://github.com/ring-clojure/ring/wiki/Concepts
+ - Read https://github.com/weavejester/compojure/wiki/Routes-In-Detail
+
+
+
+* Assignments for Lesson 7
+
+ - Clone the sample toy problem repository, and create a new branch (use your name).
+   Add the following features to the code in this new branch:
+
+   + Restrict the game so that the player is told she loses if she fails to
+     guess the correct number in 5 guesses or less.
+
+   + Add a "login" page where the user enters their name before being
+     allowed to play the game.  Modify your test client so that this
+     authorization is sent; the server should refuse to play the game
+     if the authorization is not present.
+
+   + Make the server be able to play multiple games, against multiple
+     players, simultaneously.
+
+   + If you are keeping any stateful information in the system (and you'll
+     have to do do these features, make sure the functions to manipulate
+     and inspect that state are abstracted away, so we can re-implement them
+     using a database next class.
+
+ - Modify the README file to clearly indicate all urls, and how I'm supposed to
+   proceed to play the game to verify your work.  Pretend I'm a naive user; this
+   is an exercise in writing good documentation.
 
 
 * Lesson plan
