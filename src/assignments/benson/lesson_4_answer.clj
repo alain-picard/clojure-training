@@ -15,7 +15,13 @@
    of the search results"
   [search-term search-engines]
   ;; Mapping is done in parallel due to the large time of f
-  (pmap #(slurp (str % search-term)) search-engines))
+  (pmap #((slurp (str % search-term))) search-engines))
+
+(comment
+  (doseq
+   [x search-engines]
+    (let [search-result (future (slurp (str x search-term)))]
+      @search-result)))
 
 ;;;; EXERCISE 3
 
@@ -102,7 +108,7 @@
 (defn use-potion
   "Transaction where OWNER uses a potion to heal TARGET to full health"
   [target owner]
-  (if (> (:potion @healer) 0)
+  (if (> (:potion @owner) 0)
     (dosync
      (alter owner update :potion dec)
      (alter warrior assoc :health 40)))
