@@ -74,7 +74,8 @@ questions arise, /etc./)
  - [ ] writing (good!) docstrings
  - [ ] metadata
  - [ ] strings; regexes
- - [ ] throw/catch
+ - [ ] throw/catch, slingshot
+ - [ ] making simple HTTP requests
  - [ ] multimethods
  - [ ] finding and using libraries
  - [ ] supply a list of recommended good libs.
