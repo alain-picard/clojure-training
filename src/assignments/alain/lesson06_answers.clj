@@ -62,6 +62,10 @@
                   :else              (lazy-seq (proceed)))))]
       (proceed))))
 
+(def some-lines (lazy-grep "/tmp/test.in" "WARN"))
+
+(take 10 some-lines)
+
 #_
 (take 10 (lazy-grep "/tmp/test.in" "WARN"))
 
@@ -79,7 +83,10 @@
 (defn grep2 [file regex-string]
   (doall (lazy-grep file regex-string)))
 
-
+(->> some-lazy-seq
+     (map foo)
+     (map bar)
+     (filter blah))
 
 
 ;;;;;;;;;;;
