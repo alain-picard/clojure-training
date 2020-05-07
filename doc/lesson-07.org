@@ -12,8 +12,21 @@
    and the [[https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol#Example_session][example session]].
  - Read https://github.com/ring-clojure/ring/wiki/Concepts
  - Read https://github.com/weavejester/compojure/wiki/Routes-In-Detail
+ - checkout this repo: https://github.com/alain-picard/simple-server-playground
+   and run it in your IDE, then visit http://localhost:3000
+   
+
+* Lesson plan
+** Discuss problem solutions --- see these points:
+ - points?
 
 
+** Things to explain
+ - Go through [[file:~/Consulting/clients/gojee/work/clojure-training/src/clojure_training/lesson07.clj][lesson_07.clj]]
+ - Outline of HTTP
+ - The Ring model
+ - compojure and middleware
+ - building a simple app.
 
 * Assignments for Lesson 7
 
@@ -41,14 +54,3 @@
    is an exercise in writing good documentation.
 
 
-* Lesson plan
-** Is my emacs full screen with big fonts?  Are we recording?  Screen keys on?
-** Discuss problem solutions --- see these points:
- - points?
-
-
-** Things to explain
- Go through [[file:~/Consulting/clients/gojee/work/clojure-training/src/clojure_training/lesson07.clj][lesson_07.clj]]
-
-
-See you all soon!
