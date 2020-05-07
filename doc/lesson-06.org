@@ -23,7 +23,7 @@ Lesson goals: This week we'll
 * Lesson plan
 
 ** Things to explain
- Go through [[file:~/Consulting/clients/gojee/work/clojure-training/src/clojure_training/lesson06.clj][lesson_06.clj]]
+ Go through [[file:../src/clojure_training/lesson06.clj][lesson_06.clj]]
 
 ** Some useful libraries to look at
 

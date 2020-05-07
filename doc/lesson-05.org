@@ -32,7 +32,7 @@ Lesson goals: This week we'll
 
 
 ** Things to explain
- Go through [[file:~/Consulting/clients/gojee/work/clojure-training/src/clojure_training/lesson05.clj][lesson_05.clj]]
+ Go through [[file:../src/clojure_training/lesson05.clj][lesson_05.clj]]
 
  - The various interop macros
  - Run the inspector on a java object, see the java interfaces

@@ -100,7 +100,7 @@ We are going to make extensive use of the following:
   - [[file:doc/lesson-03.org::*Lesson%20Goals][Lesson 3]] :: More functional programming
   - [[file:doc/lesson-04.org::*Lesson%20Goals][Lesson 4]] :: References and identities, threads
   - [[file:doc/lesson-05.org::*Lesson%20Goals][Lesson 5]] :: Java interop, namespaces, i/o
-  - [[file:doc/lesson-06.org::*Lesson%20Goals][Lesson 6]] :: Clojure odds and ends
+  - [[file:doc/lesson-06.org::*Lesson%206:%20Clojure%20odds%20and%20ends][Lesson 6]] :: Clojure odds and ends
   - Lesson 7 :: Building a simple HTTP service - Guess the right number!
   - Lesson 8 :: Clojure as a lisp: macros [DEFER? SKIP?]
   - Lesson 9 :: core.async

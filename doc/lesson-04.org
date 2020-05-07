@@ -74,7 +74,7 @@ for multithreading and state management.
 
 
 ** Things to explain
- Go through [[file:~/Consulting/clients/gojee/work/clojure-training/src/clojure_training/lesson04.clj::(ns%20clojure-training.lesson04)][lesson_04.clj]]
+ Go through [[file:../src/clojure_training/lesson04.clj::(ns%20clojure-training.lesson04)][lesson_04.clj]]
 
  =atom=  -- compare and swap -- atomic state succession -- uncoordinated, synchronous
  =agent= -- uncoordinated, asynchronous.
