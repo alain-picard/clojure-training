@@ -493,3 +493,17 @@
 )
 
 ;; Note how we can cross-ref other functions and vars?
+
+
+;;;; More tooling tricks
+;;; Linting
+;; clj-kondo: at https://github.com/borkdude/clj-kondo
+;;
+;; Instructions for both emacs and visual studio provided.
+;; Demonstrate.
+
+;;;; Browsing namespace
+
+;; cider-browse-ns
+;;
+;; cider-apropos
