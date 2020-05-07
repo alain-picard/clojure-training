@@ -7,29 +7,6 @@
             [slingshot.slingshot :refer [try+ throw+]]
             [clojure.java.io :as io]))
 
-;;;;  Comments on assignments
-
-
-;; I got sent this:
-(defn format-regex
-  "Returns an executable regex from REGEX"
-  [regex]
-  (read-string (str "#\"" regex "\"")))
-
-;; First comment is; this function exists:
-(re-pattern ".*Clojure.*")
-
-
-;; But, more importantly, be wary of calling functions like READ-XXX
-;; as they are very slow, and usually not necessary.
-;; See if a constructor for they type you want to produce already exists.
-;; e.g.
-
-(java.util.regex.Pattern/compile ".*Clojure.*")
-
-
-
-
 
 
 ;;;; Metadata
@@ -272,7 +249,16 @@
 ;;    chomp, chop (like Perl)
 ;;    capitalize
 ;;    camel-case, lisp-case etc (replacing camel-snake-kebab, which we'll see later)
-;;    trip, pad-left and right, etc.
+;;    trim, pad-left and right, etc.
+
+(s/longest-common-substring "abcdefg"  "23abc55cdef")
+(s/distance "foobar"  "fo0bar")
+(s/distance "foobar"  "f00bar")
+
+(s/chomp "foo\n")
+(s/trim " some string ")
+(s/pad-left "some string" 20)
+
 
 ;; Another interesting one is "cuerdas"  (Spanish for rope, or string, I think?)
 

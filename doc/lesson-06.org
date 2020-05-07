@@ -38,6 +38,7 @@ Lesson goals: This week we'll
    - ring-buffer
  - The [[https://www.clojure-toolbox.com/][Clojure toolbox]]
  - Clone and have a look at [[https://github.com/clojure-cookbook/clojure-cookbook][The Clojure Cookbook]]!  It's free!
+ - Everyone should have a /good look/ at [[https://clojure.org/reference/documentation][the reference documentation]].  Really.
 
 ** Writing good docstrings
 
@@ -110,9 +111,16 @@ Lesson goals: This week we'll
 
 
 
-* What's next?
- - Everyone should have a /good look/ at [[https://clojure.org/reference/documentation][the reference documentation]].  Really.
- - 
+* Assignment
+
+ - Extend the coin operated state machine so it can make proper change
+   if user pays too much.
+
+ - Do the reading in preparation for Lesson 7; get to understand HTTP!
+
+ - Continue working on your AOC challenges.  Rewrite your existing solutions
+   to be clearer and more elegant, on the basis of the comments I've made on
+   your pull reviews.
 
 
 See you all soon!
