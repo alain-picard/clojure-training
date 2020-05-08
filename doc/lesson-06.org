@@ -1,30 +1,126 @@
 * Lesson 6: Clojure odds and ends
 
- - [ ] writing good docstrings
- - [ ] metadata
- - [ ] strings; regexes
- - [ ] throw/catch
- - [ ] multimethods
+ - [X] metadata
+ - [X] strings; regexes
+ - [X] throw/catch; slingshot
+ - [X] making simple HTTP requests
+ - [X] multimethods
  - [ ] finding and using libraries
+ - [ ] browsing namespaces  
  - [ ] supply a list of recommended good libs.
- - [ ] reader syntax
+ - [ ] writing good docstrings
+ - [ ] linting with kondo; emacs integration  
 
 * Preparatory Material for Lesson 6
 
 
 Lesson goals: This week we'll
 
- - Read chapter 13
- - Koans 23, 27
+ - Read chapter 13, specially multimethods
+ - Do koans file 10, 27 (multimethods)
+   
 
 * Lesson plan
-** Is my emacs full screen with big fonts?  Are we recording?  Screen keys on?
-** Discuss problem solutions --- see these points:
- - points?
-
 
 ** Things to explain
- Go through [[file:~/Consulting/clients/gojee/work/clojure-training/src/clojure_training/lesson06.clj][lesson_06.clj]]
+ Go through [[file:../src/clojure_training/lesson06.clj][lesson_06.clj]]
+
+** Some useful libraries to look at
+
+ - clj-http
+ - cheschire, camel-snake-kebab, parsing json
+ - medley (utilities)
+ - timbre (logging)
+ - superstring
+ - Many of the libs under https://github.com/clj-commons, such as
+   - useful
+   - fs
+   - ring-buffer
+ - The [[https://www.clojure-toolbox.com/][Clojure toolbox]]
+ - Clone and have a look at [[https://github.com/clojure-cookbook/clojure-cookbook][The Clojure Cookbook]]!  It's free!
+ - Everyone should have a /good look/ at [[https://clojure.org/reference/documentation][the reference documentation]].  Really.
+
+** Writing good docstrings
+
+ Shamelessly lifted from [[info:elisp#Documentation%20Tips][The Emacs Lisp Manual, Appendix D]]:
+
+   • Every command, function, or variable intended for users to know
+     about should have a documentation string.
+
+   • An internal variable or subroutine of a Lisp program might as well
+     have a documentation string.  Documentation strings take up very
+     little space in a running Emacs.
+
+   • Format the documentation string so that it fits in an Emacs window
+     on an 80-column screen.  It is a good idea for most lines to be no
+     wider than 60 characters.  The first line should not be wider than
+     67 characters or it will look bad in the output of ‘apropos’.
+
+     You can fill the text if that looks good.  Emacs Lisp mode fills
+     documentation strings to the width specified by
+     ‘emacs-lisp-docstring-fill-column’.  However, you can sometimes
+     make a documentation string much more readable by adjusting its
+     line breaks with care.  Use blank lines between sections if the
+     documentation string is long.
+
+   • The first line of the documentation string should consist of one or
+     two complete sentences that stand on their own as a summary.  ‘M-x
+     apropos’ displays just the first line, and if that line’s contents
+     don’t stand on their own, the result looks bad.  In particular,
+     start the first line with a capital letter and end it with a
+     period.
+
+     For a function, the first line should briefly answer the question,
+     “What does this function do?” For a variable, the first line should
+     briefly answer the question, “What does this value mean?”
+
+     Don’t limit the documentation string to one line; use as many lines
+     as you need to explain the details of how to use the function or
+     variable.  Please use complete sentences for the rest of the text
+     too.
+
+   • The first line should mention all the important arguments of the
+     function, and should mention them in the order that they are
+     written in a function call.  If the function has many arguments,
+     then it is not feasible to mention them all in the first line; in
+     that case, the first line should mention the first few arguments,
+     including the most important arguments.
+
+   • For consistency, phrase the verb in the first sentence of a
+     function’s documentation string as an imperative—for instance, use
+     “Return the cons of A and B.” in preference to “Returns the cons of
+     A and B.” Usually it looks good to do likewise for the rest of the
+     first paragraph.  Subsequent paragraphs usually look better if each
+     sentence is indicative and has a proper subject.
+
+   • The documentation string for a function that is a yes-or-no
+     predicate should start with words such as “Return t if”, to
+     indicate explicitly what constitutes truth.  The word “return”
+     avoids starting the sentence with lower-case “t”, which could be
+     somewhat distracting.
+
+   • Write documentation strings in the active voice, not the passive,
+     and in the present tense, not the future.  For instance, use
+     “Return a list containing A and B.” instead of “A list containing A
+     and B will be returned.”
+
+   • Avoid using the word “cause” (or its equivalents) unnecessarily.
+     Instead of, “Cause Emacs to display text in boldface”, write just
+     “Display text in boldface”.
+
+
+
+
+* Assignment
+
+ - Extend the coin operated state machine so it can make proper change
+   if user pays too much.
+
+ - Do the reading in preparation for Lesson 7; get to understand HTTP!
+
+ - Continue working on your AOC challenges.  Rewrite your existing solutions
+   to be clearer and more elegant, on the basis of the comments I've made on
+   your pull reviews.
 
 
 See you all soon!

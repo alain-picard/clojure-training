@@ -35,6 +35,20 @@ me to review your code and merge it back into the main repo.  Thus,
 you'll be able to view your colleague's solutions after I merge your
 answers back into the main repo.
 
+*REVIEWING ALAIN'S SOLUTIONS*
+
+After the lessons, I will place my solutions in [[file:src/assignments/alain/][this directory]]. You
+can peruse them at your leisure and compare against the code
+you have written.
+
+I will also place the code I present during the live coding
+sessions [[file:src/clojure_training/][in here]]; the files beginning with live_XXX are the code
+you see on the screen during the presentation; the files without the
+live_ prefix are the preparatory material I produce (which is close,
+but doesn't include the tangents I go off on during the lessons as
+questions arise, /etc./)
+
+
 * Material we plan to get through, eventually
 
  - [X] how to get help
@@ -53,23 +67,24 @@ answers back into the main repo.
  - [X] The philosophical underpinning of state handling in clojure
  - [X] vars, atoms, refs, agents
  - [X] threads, futures, promises (concurrency primitives)
- - [ ] The reader, it's syntax, and brief macro overview
- - [ ] java interop, definining new types
- - [ ] namespaces, the ns macro
- - [ ] i/o
+ - [X] The reader, it's syntax, and brief macro overview
+ - [X] java interop, definining new types
+ - [X] namespaces, the ns macro
+ - [X] i/o
  - [ ] writing (good!) docstrings
- - [ ] metadata
- - [ ] strings; regexes
- - [ ] throw/catch
- - [ ] multimethods
- - [ ] Simple HTTP service: ring handlers, libraries
+ - [X] metadata
+ - [X] strings; regexes
+ - [X] throw/catch, slingshot
+ - [X] making simple HTTP requests
+ - [X] multimethods
  - [ ] finding and using libraries
  - [ ] supply a list of recommended good libs.
- - [ ] reader syntax
- - [ ] macros, threading macros
+ - [X] reader syntax
+ - [ ] Simple HTTP service: ring handlers, libraries
  - [ ] core.async
  - [ ] clojurescript
  - [ ] reframe
+ - [ ] macros, threading macros
 
 * Resources
 
@@ -85,8 +100,8 @@ We are going to make extensive use of the following:
   - [[file:doc/lesson-03.org::*Lesson%20Goals][Lesson 3]] :: More functional programming
   - [[file:doc/lesson-04.org::*Lesson%20Goals][Lesson 4]] :: References and identities, threads
   - [[file:doc/lesson-05.org::*Lesson%20Goals][Lesson 5]] :: Java interop, namespaces, i/o
-  - Lesson 6 :: Clojure odds and ends
-  - Lesson 7 :: Building a simple HTTP service
+  - [[file:doc/lesson-06.org::*Lesson%206:%20Clojure%20odds%20and%20ends][Lesson 6]] :: Clojure odds and ends
+  - [[file:doc/lesson-07.org::*Lesson%207:%20A%20simple%20HTTP%20service][Lesson 7]] :: Building a simple HTTP service - Guess the right number!
   - Lesson 8 :: Clojure as a lisp: macros [DEFER? SKIP?]
   - Lesson 9 :: core.async
   - Lesson 10 :: Clojurescript
