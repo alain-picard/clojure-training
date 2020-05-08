@@ -72,14 +72,14 @@ questions arise, /etc./)
  - [X] namespaces, the ns macro
  - [X] i/o
  - [ ] writing (good!) docstrings
- - [ ] metadata
- - [ ] strings; regexes
- - [ ] throw/catch, slingshot
- - [ ] making simple HTTP requests
- - [ ] multimethods
+ - [X] metadata
+ - [X] strings; regexes
+ - [X] throw/catch, slingshot
+ - [X] making simple HTTP requests
+ - [X] multimethods
  - [ ] finding and using libraries
  - [ ] supply a list of recommended good libs.
- - [ ] reader syntax
+ - [X] reader syntax
  - [ ] Simple HTTP service: ring handlers, libraries
  - [ ] core.async
  - [ ] clojurescript

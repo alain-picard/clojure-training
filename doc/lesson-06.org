@@ -1,10 +1,10 @@
 * Lesson 6: Clojure odds and ends
 
- - [ ] metadata
- - [ ] strings; regexes
- - [ ] throw/catch; slingshot
- - [ ] making simple HTTP requests
- - [ ] multimethods
+ - [X] metadata
+ - [X] strings; regexes
+ - [X] throw/catch; slingshot
+ - [X] making simple HTTP requests
+ - [X] multimethods
  - [ ] finding and using libraries
  - [ ] browsing namespaces  
  - [ ] supply a list of recommended good libs.
