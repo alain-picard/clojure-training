@@ -1,9 +1,3 @@
-;; This mimics standard, type-based single dispatch,
-;; with extension that we can define any predicate we like
-;; to decide "what kind" of thing is being dispatched on.
-;;
-;; But we can do more than this:  multiple dispatch!
-
 ;; An interesting example: State machines
 
 ;; Consider a vending machine, which accepts coins and
@@ -19,12 +13,16 @@
 
 (defmulti handle (fn [machine event] [(:state machine) (:type event)]))
 
-(defmethod handle [:accumulating-money :refund] [machine event]
+;;Methods changed in the assignment.
+(defmethod handle [:accumulating-money :refund]
+  [machine event]
   (println "Current coin value in the accumulating state: " (coin-value machine) "cents.")
   (println "Refunding " (coin-value machine) " cents.")
   vending-machine)
 
-(defmethod handle [:start :coin] [machine event]
+(defmethod handle [:start :coin]
+  "Even in the start state it needs to check if the coin value is enough for a soda. And refunding happens automatically."
+  [machine event]
   (println "Getting a coin in the start state: " (:coin-value event) " cents.")
   (let [machine (-> machine
                     (assoc :state :accumulating-money)
@@ -33,7 +31,9 @@
           (= (coin-value machine) price-of-soda) (do (println "Disbursing delicious soda.") vending-machine)
           (> (coin-value machine) price-of-soda) (do (println "Disbursing delicious soda.") (println "Refunding " (- (coin-value machine) price-of-soda) " cents.") vending-machine))))
 
-(defmethod handle [:accumulating-money :coin] [machine event]
+(defmethod handle [:accumulating-money :coin]
+  "Similar to the start state and refunding happens automatically."
+  [machine event]
   (let [machine (-> machine
                     (update :coins conj (:coin-value event)))]
     (println "Getting a coin in the accumulating state: " (coin-value machine) " cents.")
