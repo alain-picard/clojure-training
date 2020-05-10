@@ -13,7 +13,9 @@
  - Read https://github.com/ring-clojure/ring/wiki/Concepts
  - Read https://github.com/weavejester/compojure/wiki/Routes-In-Detail
  - checkout this repo: https://github.com/alain-picard/simple-server-playground
-   and run it in your IDE, then visit http://localhost:3000
+   and run it in your IDE, then visit http://localhost:3001
+
+# Here is my [[file:~/Consulting/clients/gojee/work/simple-server/][local copy]]
    
 
 * Lesson plan
@@ -22,16 +24,18 @@
 
 
 ** Things to explain
- - Go through [[file:~/Consulting/clients/gojee/work/clojure-training/src/clojure_training/lesson07.clj][lesson_07.clj]]
+ - Go through each of the tags in the [[https://github.com/alain-picard/simple-server-playground][simple server playground]].
  - Outline of HTTP
  - The Ring model
- - compojure and middleware
  - building a simple app.
+ - compojure and middleware
+ - Idempotent functions, request methods, caching
+ - Where's the state?
 
 * Assignments for Lesson 7
 
  - Clone the sample toy problem repository, and create a new branch (use your name).
-   Add the following features to the code in this new branch:
+   Add the following features to the code in your new branch:
 
    + Restrict the game so that the player is told she loses if she fails to
      guess the correct number in 5 guesses or less.
@@ -48,6 +52,12 @@
      have to do do these features, make sure the functions to manipulate
      and inspect that state are abstracted away, so we can re-implement them
      using a database next class.
+
+   + The current game uses the GET verb to play the game, but this is bad form
+     for operations which modify state on the server (such as creating the game,
+     recording number of attempts /etc./ because GET requests can be cached by 
+     intermediate proxies.  What are more appropriate verbs to use in for the
+     uris in this game?  Make the proper modification to the game.
 
  - Modify the README file to clearly indicate all urls, and how I'm supposed to
    proceed to play the game to verify your work.  Pretend I'm a naive user; this
