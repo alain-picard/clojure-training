@@ -1,10 +1,10 @@
 * Lesson 7: A simple HTTP service
 
- - [ ] Simple HTTP service: ring handlers, libraries
- - [ ] What is a request?  What is a response?
- - [ ] Routing
- - [ ] Middlewares
- - [ ] A toy problem: Guess what number I'm thinking?
+ - [X] Simple HTTP service: ring handlers, libraries
+ - [X] What is a request?  What is a response?
+ - [X] Routing
+ - [X] Middlewares
+ - [X] A toy problem: Guess what number I'm thinking?
 
 * Preparatory Material for Lesson 7
 
@@ -31,6 +31,20 @@
  - compojure and middleware
  - Idempotent functions, request methods, caching
  - Where's the state?
+
+** Tags
+
+ - starting-point
+ - request-methods
+ - manual-dispatching
+ - compojure-routing
+ - http-ring-responses
+ - destructuring-routes
+ - understanding-middlewares
+ - using-middleware-and-destructured-routes
+ - separation-of-concerns
+
+
 
 * Assignments for Lesson 7
 

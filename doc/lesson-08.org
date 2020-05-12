@@ -1,0 +1,48 @@
+* Lesson 8: core.async and dynamoDB 
+
+ - [ ] core.async: Communicating sequential processes
+ - [ ] dynamo DB: Our first out of process dependency
+
+* Preparatory Material for Lesson 8
+
+ - Read [[https://aws.amazon.com/getting-started/hands-on/data-modeling-gaming-app-with-dynamodb/][Data Modeling a Gaming Application with Amazon DynamoDB - Amazon Web Services]], especially
+   the section 4.  Don't worry too much about the intricacies of designing efficiently 
+   models in Dynamo yet (it's quite hard, is my impression).
+
+   We're going to hook up to Dynamo using the =amazonica.aws.dynamodbv2= interface.
+   You can get a local Dynamo running on your own system (so you don't need real AWS
+   credentials) by downloading the [[https://github.com/localstack/localstack][localstack]] software (also availabe via docker, if you prefer).
+   See if you can get this running on your machine; once running, you should be able to
+   access Dynamo on localhost:4569.
+
+   You can access your instance with this GUI tool provided by Amazon:
+   https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/workbench.settingup.html
+
+ - Read Chapter 11 of [[https://www.braveclojure.com/clojure-for-the-brave-and-true/][Brave and True]] on =core.async=.
+
+* Lesson plan
+** Discuss problem solutions
+** Things to explain
+   - simple DynamoDB example
+     - creating tables
+     - querying
+     - putting data
+   - core.async tutorial
+   - creating HTML with hiccup (time permitting).
+
+     
+
+* Assignments for Lesson 8
+
+ - Extend the "guess the number game" code you did at the
+   end of lesson 7 by replacing all the state keeping
+   functions with calls to Dynamo DB.
+   Design your tables carefully.
+
+ - Revisit the problem of returning the first hits from
+   multiple search engines, this time using =core.async= constructs
+   instead of futures and promises.  (You'll need to use the =alts!=
+   macro).  Compare and contrast the two approaches.
+
+
+
