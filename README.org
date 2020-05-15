@@ -71,7 +71,7 @@ questions arise, /etc./)
  - [X] java interop, definining new types
  - [X] namespaces, the ns macro
  - [X] i/o
- - [ ] writing (good!) docstrings
+ - [X] writing (good!) docstrings
  - [X] metadata
  - [X] strings; regexes
  - [X] throw/catch, slingshot
@@ -81,7 +81,7 @@ questions arise, /etc./)
  - [ ] supply a list of recommended good libs.
  - [X] reader syntax
  - [X] Simple HTTP service: ring handlers, libraries
- - [ ] core.async
+ - [X] core.async
  - [ ] clojurescript
  - [ ] reframe
  - [ ] macros, threading macros
@@ -103,7 +103,7 @@ We are going to make extensive use of the following:
   - [[file:doc/lesson-06.org::*Lesson%206:%20Clojure%20odds%20and%20ends][Lesson 6]] :: Clojure odds and ends
   - [[file:doc/lesson-07.org::*Lesson%207:%20A%20simple%20HTTP%20service][Lesson 7]] :: Building a simple HTTP service - Guess the right number!
   - [[file:doc/lesson-08.org][Lesson 8]] :: core.async and Dynamo DB
-  - Lesson 9 :: Clojurescript
+  - [[file:doc/lesson-09.org][Lesson 9]] :: Clojurescript
   - Lesson 10 :: Re-Frame
   - Lesson 11 :: The word puzzle (part 1)
   - Lesson 12 :: The word puzzle (part 2)

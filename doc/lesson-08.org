@@ -1,7 +1,7 @@
 * Lesson 8: core.async and dynamoDB 
 
- - [ ] core.async: Communicating sequential processes
- - [ ] dynamo DB: Our first out of process dependency
+ - [X] core.async: Communicating sequential processes
+ - [X] dynamo DB: Our first out of process dependency
 
 * Preparatory Material for Lesson 8
 

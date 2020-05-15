@@ -1,0 +1,71 @@
+* Lesson 9: clojurescript
+
+ - [ ] clojurescript
+
+* Preparatory Material for Lesson 9
+
+ - Create a new clojurescript playground project with the following command:
+   #+begin_src shell
+ lein new figwheel-main hello-world.core -- --reagent 
+ #+end_src
+
+ - Read this [[https://clojurescript.org/guides/quick-start][clojurescript quick start]] tutorial.  Don't worry too much that he
+   uses the =clj= command line tool (we will use leiningen and figwheel) and
+   don't worry about the "Running ClojureScript on Node.js" section (we won't
+   be doing that).
+
+   Concentrate on learning the compilation model.
+
+ - Now connect a live, reloadable environment by going into your
+   new project and running this command:
+   #+begin_src shell
+ cd hello-world.core
+ lein fig:build
+ #+end_src
+   This should open your browser automatically on [[http://localhost:9500]]
+
+ - Now bring up the file =src/hello_world/core.cljs= and read through it.
+   Don't worry too much if you don't know what it's doing, but change
+   the text inside the =app-state= and save the file.  The change should
+   automatically be reflected in your browser.
+
+ - [[https://www.youtube.com/watch?v=KZjFVdU8VLI][This video]] illustrates live reloading and coding of a game running in the
+     browser using [[https://figwheel.org/][figwheel]].  He also has another, longer talk which goes in
+     more detail if you are interested.
+
+ - The [[https://figwheel.org/tutorial][figwheel tutorial]] is a great read, although I personally do not use
+   the workflow he describes, I use the workflow described in https://figwheel.org/docs/emacs.html
+   I have verified that the simple hello-world.core project works whilst
+   integrated both in emacs and VS code.  Feel free to experiment in bringing up
+   this environment.  You will know you have succeeded when you can 
+   go in the =core.cljs= file, add a line like this:
+   #+begin_src clojure
+ (js/alert "Whoo, hooo! we made it!")
+ #+end_src
+   to the buffer, hit =C-M-X= on the form (or the VS Code equivalent), and
+   see a popup immediately appear in your browser window.
+
+ - If you are not completely exhausted by then, and you know some javascript
+   (or even if you don't), [[https://kanaka.github.io/clojurescript/web/synonym.html][this site]] provides a list of equivalences between
+   some common clojurescript forms and their javascript equivalent.  Note how
+   much more sensible things are on the clojurescript side...
+
+ - Some basic understanding of javascript will provide inevitable in the long
+   run, however that is it own, huge topic.  We want to learn only enough to
+   get ourselves out of trouble if something fails.  Still, understanding
+   the basics of the language is worthwhile; I found the [[https://javascript.info/]]
+   site to be reasonable, but there are a million sites and books on this topic,
+   so I leave this part up to you.
+
+
+* Lesson plan
+** Discuss problem solutions
+** Things to explain
+ - The transpilation model
+ - dev builds and production builds
+ - the live programming and debugging experience
+     
+
+* Assignments for Lesson 9
+
+# - Implement the "guess the number game" in clojurescript.  (TENTATIVE)
