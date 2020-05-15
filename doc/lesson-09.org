@@ -26,7 +26,7 @@
 
  - Now bring up the file =src/hello_world/core.cljs= and read through it.
    Don't worry too much if you don't know what it's doing, but change
-   the text inside the =app-state= and save the file.  The change should
+   the text inside the =hello-world= function and save the file.  The change should
    automatically be reflected in your browser.
 
  - [[https://www.youtube.com/watch?v=KZjFVdU8VLI][This video]] illustrates live reloading and coding of a game running in the
@@ -64,6 +64,7 @@
  - The transpilation model
  - dev builds and production builds
  - the live programming and debugging experience
+ - reloadable code.
      
 
 * Assignments for Lesson 9
