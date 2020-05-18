@@ -1,6 +1,7 @@
+
 * Lesson 9: clojurescript
 
- - [ ] clojurescript
+ - [X] clojurescript
 
 * Preparatory Material for Lesson 9
 
@@ -71,42 +72,45 @@
      [guess user]
      (if (nil? guess)
        nil
-       (if (= user (get-in (db/get-user user) [:item :username]))
-         (cond
+       (let [user (db/get-user user)]
+         (if (= user (get-in user [:item :username]))
+           (cond
 
-           (= guess (get-in (db/get-user user) [:item :target])) 
-           (do (new-game! user) ; restart the game with a new target number
-               :correct)
+             (= guess (get-in (db/get-user user) [:item :target])) 
+             (do (new-game! user)          ; restart the game with a new target number
+                 :correct)
 
-           (< guess (get-in (db/get-user user) [:item :target]))
-           (do (update-counter user)
-               (if (<= 5 (get-in (db/get-user user) [:item :counter]))
-                 (do (new-game! user)
-                     :game-over)
-                 :too-low))
+             (< guess (get-in (db/get-user user) [:item :target]))
+             (do (update-counter user)
+                 (if (<= 5 (get-in (db/get-user user) [:item :counter]))
+                   (do (new-game! user)
+                       :game-over)
+                   :too-low))
 
-           (> guess (get-in (db/get-user user) [:item :target]))
-           (do (update-counter user)
-               (if (<= 5 (get-in (db/get-user user) [:item :counter]))
-                 (do (new-game! user)
-                     :game-over)
-                 :too-high)))
-         :unauthorized)))
+             (> guess (get-in (db/get-user user) [:item :target]))
+             (do (update-counter user)
+                 (if (<= 5 (get-in (db/get-user user) [:item :counter]))
+                   (do (new-game! user)
+                       :game-over)
+                   :too-high)))
+           :unauthorized))))
  #+end_src
 
 ** Things to explain
- - The transpilation model
- - startup core.cljs, inspect page in browser and look at what scripts got written
- - go look at our compiled script in resources/public/cljs-out/dev/hello_world/core.js
- - dev builds and production builds
- - build the minified version, and go inspect it again.
- - the live programming and debugging experience
- - how errors are reported.
- - reloadable code.
- - React and =reagent=
- - creating components
- - binding events and state management
- - AJAX
+ - [X] The transpilation model
+ - [ ] startup core.cljs, inspect page in browser and look at what scripts got written
+ - [ ] go look at our compiled script in resources/public/cljs-out/dev/hello_world/core.js
+ - [ ] dev builds and production builds
+ - [ ] build the minified version, and go inspect it again.
+ - [X] the live programming and debugging experience
+ - [X] how errors are reported.
+ - [X] reloadable code.
+ - [X] React and =reagent=
+ - [X] 10,000 threads! https://swannodette.github.io/2013/08/02/100000-processes/
+ - [X] Another nice demo: https://programming-enchiladas.destructuring-bind.org/rm-hull/7098992?shape=icosahedron&style=shaded&scale=2
+ - [X] creating components
+ - [X] binding events and state management
+ - [X] AJAX
      
 
 * Assignments for Lesson 9

@@ -1,0 +1,21 @@
+
+* Lesson 10: re-frame
+
+* Preparatory Material for Lesson 10
+
+ - The [[https://day8.github.io/re-frame/re-frame/][re-frame documentation]] is some of the best I've seen.  Please read
+   ALL of it; you'll learn not only about re-frame itself, but also about
+   a beautiful model of UI programming.  re-frame was written by Mike Thompson,
+   a frequent attendee at the Sydney Clojure meetups, I've had the pleasure of
+   seeing some of his talks and chatting to him, he is a /very/ smart guy.
+
+   Mike's documentation and explanation is better than anything I could come up
+   with for the scope of this class, so we'll lean on it pretty heavily.
+
+ - Clone re-frame (at https://github.com/day8/re-frame/) and make sure to run
+   the simple example provided in https://github.com/day8/re-frame/tree/master/examples/simple
+
+
+* Lesson plan
+* Assignments for Lesson 9
+

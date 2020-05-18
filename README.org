@@ -82,7 +82,7 @@ questions arise, /etc./)
  - [X] reader syntax
  - [X] Simple HTTP service: ring handlers, libraries
  - [X] core.async
- - [ ] clojurescript
+ - [X] clojurescript
  - [ ] reframe
  - [ ] macros, threading macros
 
@@ -93,6 +93,8 @@ We are going to make extensive use of the following:
  - The excellent online book: [[https://www.braveclojure.com/clojure-for-the-brave-and-true/][Clojure for the Brave and True]]
  - The [[https://github.com/functional-koans/clojure-koans][clojure koans]]
  - Many of the excellent at [[http://www.4clojure.com/problems][4clojure sample problems]]
+ - In lessons 7 and 8, we will make use of [[git@github.com:alain-picard/simple-server-playground.git][this simple server]] playground.
+ - In lessons 9 and 10, we will study [[git@github.com:alain-picard/simple-reagent-example.git][a bit of reagent]].
 
 * Lesson Plans
   - [[file:doc/lesson-01.org::*Introductory%20email][Lesson 1]] :: intro 
@@ -104,7 +106,7 @@ We are going to make extensive use of the following:
   - [[file:doc/lesson-07.org::*Lesson%207:%20A%20simple%20HTTP%20service][Lesson 7]] :: Building a simple HTTP service - Guess the right number!
   - [[file:doc/lesson-08.org][Lesson 8]] :: core.async and Dynamo DB
   - [[file:doc/lesson-09.org][Lesson 9]] :: Clojurescript
-  - Lesson 10 :: Re-Frame
+  - [[file:doc/lesson-10.org][Lesson 10]] :: Re-Frame
   - Lesson 11 :: The word puzzle (part 1)
   - Lesson 12 :: The word puzzle (part 2)
   - Lesson 13 :: Clojure as a lisp: macros [DEFER? SKIP?]
