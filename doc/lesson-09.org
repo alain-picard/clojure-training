@@ -60,13 +60,67 @@
 
 * Lesson plan
 ** Discuss problem solutions
+ - blocking i/o in core.async
+
+ - Being aware of what's in/process and out/process, that's
+   where real bottlenecks in software lie.  Example:
+
+ #+begin_src clojure
+   (defn guess-answer
+     "Returns the result of a guess from an authorized user"
+     [guess user]
+     (if (nil? guess)
+       nil
+       (if (= user (get-in (db/get-user user) [:item :username]))
+         (cond
+
+           (= guess (get-in (db/get-user user) [:item :target])) 
+           (do (new-game! user) ; restart the game with a new target number
+               :correct)
+
+           (< guess (get-in (db/get-user user) [:item :target]))
+           (do (update-counter user)
+               (if (<= 5 (get-in (db/get-user user) [:item :counter]))
+                 (do (new-game! user)
+                     :game-over)
+                 :too-low))
+
+           (> guess (get-in (db/get-user user) [:item :target]))
+           (do (update-counter user)
+               (if (<= 5 (get-in (db/get-user user) [:item :counter]))
+                 (do (new-game! user)
+                     :game-over)
+                 :too-high)))
+         :unauthorized)))
+ #+end_src
+
 ** Things to explain
  - The transpilation model
+ - startup core.cljs, inspect page in browser and look at what scripts got written
+ - go look at our compiled script in resources/public/cljs-out/dev/hello_world/core.js
  - dev builds and production builds
+ - build the minified version, and go inspect it again.
  - the live programming and debugging experience
+ - how errors are reported.
  - reloadable code.
+ - React and =reagent=
+ - creating components
+ - binding events and state management
+ - AJAX
      
 
 * Assignments for Lesson 9
 
-# - Implement the "guess the number game" in clojurescript.  (TENTATIVE)
+ - The final assignment for the training module will be to re-implement
+   the "spelling bee" game of the New York Times, located at https://www.nytimes.com/puzzles/spelling-bee
+   In preparation for this, see if you can design some =reagent= components which:
+   - display a list of words on the screen
+   - keeps these words alphabetically sorted at all times
+   - have an input field where user can type in new words, which
+     should appear, in their proper place, when the user hits the carriage return
+   Add as many bells and whistles to your components as you like.  (fonts, fade ins, fade outs,
+   animations, error checking on repeated words, /etc./  Use your imagination!)
+
+ - Re-implement the "guess the number game", this time in clojurescript.
+   For extra difficulty, obtain the initial game state from a back end server.
+
