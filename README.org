@@ -96,6 +96,16 @@ We are going to make extensive use of the following:
  - In lessons 7 and 8, we will make use of [[git@github.com:alain-picard/simple-server-playground.git][this simple server]] playground.
  - In lessons 9 and 10, we will study [[git@github.com:alain-picard/simple-reagent-example.git][a bit of reagent]].
 
+
+** Recommended external links 
+
+   I urge you all to have a look at:
+   - [[https://github.com/razum2um/awesome-clojure][Awesome clojure]]: a curated list
+   - [[https://github.com/clojure-cookbook/clojure-cookbook.git][The clojure cookbook]]
+   - [[https://figwheel.org/docs/][The *figwheel* documentation]]
+   - [[https://cljdoc.org/d/reagent/reagent/1.0.0-alpha2/doc/documentation-index][The *reagent* documentation]]
+   - [[https://github.com/day8/re-frame/][The *re-frame* documentation]]
+
 * Lesson Plans
   - [[file:doc/lesson-01.org::*Introductory%20email][Lesson 1]] :: intro 
   - [[file:doc/lesson-02.org::*Lesson%20Goals][Lesson 2]] :: Functional Programming
