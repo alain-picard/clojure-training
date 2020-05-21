@@ -17,5 +17,181 @@
 
 
 * Lesson plan
-* Assignments for Lesson 9
 
+** Clear up these bad patterns
+
+In [[file:~/Consulting/clients/gojee/work/training/assignments/ray-spelling-bee/src/hello_world/core.cljs::(ns%20^:figwheel-hooks%20hello-world.core][Ray's attempt]], we see the following issues:
+- [ ] list-words component depends on global state, so is not reusable
+- [ ] user-input component passes e on as raw DOM object, so
+  later in validate word we end up with JS interop code (=.-charCode=)
+- [ ] word and word-list are in separate atoms.  Why?
+- [ ] alternately, maybe the accululation and storage of words
+      is something that a [user-input] component should encapsulate?
+      What if we wanted two [user-input] components?  We'd have
+      to rewrite everything.
+- [ ] We will see the re-frame approach to this problem in a few minutes.
+- [ ] Consider a slightly prettier display, and explain the meta below:
+
+(defn list-words []
+  [:center>h3
+   [:ul
+    (for [w @words-list]
+      ^{:key w} [:li w])]])
+
+
+** Re-frame
+
+
+
+The six dominoes are:
+
+ - Event dispatch
+ - Event handling
+ - Effect handling
+ - Query
+ - View
+ - DOM
+
+The [[https://day8.github.io/re-frame/event-handling-infographic/][event infographic]] is key.
+The [[https://day8.github.io/re-frame/subscriptions/][subscription infographic]] is also informative.
+
+
+ #+begin_quote
+ Effects And Coeffects
+ =======================
+When striving for pure event handlers there are two considerations:
+
+Effects - what your event handler does to the world (aka side-effects)
+Coeffects - the data your event handler requires from the world in order to do its computation (aka side-causes)
+ #+end_quote
+
+ #+begin_quote
+ In re-frame, the forwards sweep progressively creates coeffects
+ (inputs to the event handler), while the backwards sweep processes
+ the effects (outputs from the event handler).
+ #+end_quote
+
+ #+begin_quote
+ Event handlers compute how the world should change in response to an
+ event and, to do that, they need to first know the current state of
+ the world.
+
+ coeffects is the current state of the world, as data, as presented to an event handler.
+ #+end_quote
+
+
+** Discuss next lesson plan
+
+ - You will each have 30 minutes to present your solution.
+ - You will participate in giving feedback and commentary on
+   each other's code.
+ - All aspects of the code will be fair game to discuss: in particular
+   - adherence/comprehension of re-frame
+   - style, layout of code
+   - choice of names for functions, variables etc.
+ - You will then incorporate this feedback into your second
+   revision of the code for Lesson 11.
+ - We will use these discussions to discuss various topics
+   as they come up.
+
+This is a big assignment, and will terminate our clojure training program.
+
+* Assignments for Lesson 10
+
+** Purpose
+
+We are trying to learn =re-frame=.  I've selected this puzzle because
+it allows us to explore several interesting ideas, such as:
+
+ - separation views from logic
+ - event driven patterns
+ - designing state
+ - writing for testability
+
+I'm less interested in you making it "look pretty" than I am in
+seeing that you understand how to use the re-frame framework.
+
+** The New York Times spelling bee.
+
+In particular, please pay attention to all of the following:
+ - The presence of the "delete" and "shuffle" buttons.
+ - You don't have to layout the pretty hexagon (though more
+   power to you if you do) but please display each letter in
+   some visual manner, making the central (or required) letter
+   distinct, and implement the shuffle button to move this
+   visual arrangement around randomly.
+ - Note that the "Enter" button, and the return key in the text
+   input behave the same way.  Keep that in mind in your solution!
+ - As you enter letters, the letters have different colors:
+   - "Good" letters are black
+   - The required letter is yellow
+   - letters which can't exist are faded grey
+   - Notice the "Bad letters" animation if you attempt a 
+     word with bad letters in it.
+ - The box which says "You have found... words" is dynamic.
+ - The list is kept in sorted order at all times.
+ - a little popup appears with a message when you enter a new word.
+   How will you render an animation in a re-frame patterny sort of way?
+ - The slider has many interesting properties:
+   - The text goes from "Beginner" to "Good start" ... etc
+     as you accumulate points
+   - Clicking on the label shows the targets for the specific game
+   - The slider "bubble" moves as you accumulate points 
+ - Think about how you are going to represent a "game";
+   what info needs to be kept, (current score, scoring ladder, etc)
+
+** Scoring rules
+
+  - Words must contain at least 4 letters.
+  - Words must include the center letter.
+  - Letters can be used more than once.
+  - 4-letter words are worth 1 point each.
+  - Longer words earn 1 point per letter.
+  - Each puzzle includes at least one “pangram” which uses every
+    letter. These are worth 7 extra points!
+
+** Sample game answers
+
+Yesterday’s Answers
+May 10, 2020
+
+Letters to display:    [R]  A B F O P Y
+
+Allowed words:
+    babyproof
+    afar
+    affray
+    afro
+    arbor
+    array
+    arroyo
+    barb
+    barf
+    boar
+    boor
+    bray
+    farro
+    fora
+    foray
+    fray
+    parry
+    poor
+    pray
+    proof
+    prop
+    pyro
+    roar
+    roof
+    ropy
+
+Ranks are based on a percentage of possible points in a puzzle. The minimum scores to reach each rank for today’s are:
+
+    Beginner (0)
+    Good Start (2)
+    Moving Up (5)
+    Good (7)
+    Solid (14)
+    Nice (23)
+    Great (37)
+    Amazing (47)
+    Genius (65)
