@@ -120,7 +120,7 @@ We are going to make extensive use of the following:
   - [[file:doc/lesson-10.org][Lesson 10]] :: Re-Frame
   - Lesson 11 :: The word puzzle (part 1)
   - Lesson 12 :: The word puzzle (part 2)
-  - [[file:doc/lesson-summary.org][Course summary]]
+  - [[file:doc/lesson-summary.org][Course summary]] :: A quick review
 
 * Assignments
 
