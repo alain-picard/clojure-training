@@ -1,0 +1,13 @@
+
+.reveal h1
+{ font-size: 2.5em;
+  text-transform: none}
+
+.reveal h2
+{ font-size: 2.5em;
+  text-transform: none}
+
+blockquote {
+    font-size: 110%;
+    font-family: 'Great Vibes', cursive;
+}

@@ -95,7 +95,8 @@ We are going to make extensive use of the following:
  - Many of the excellent at [[http://www.4clojure.com/problems][4clojure sample problems]]
  - In lessons 7 and 8, we will make use of [[git@github.com:alain-picard/simple-server-playground.git][this simple server]] playground.
  - In lessons 9 and 10, we will study [[git@github.com:alain-picard/simple-reagent-example.git][a bit of reagent]].
-
+ - In lessons 11 and 12, we will build our own version of the [[https://www.nytimes.com/puzzles/spelling-bee][New York Times Spelling Bee]].
+   Dr Picard's example solution can be [[https://github.com/alain-picard/re-frame-spelling-bee][found here]].
 
 ** Recommended external links 
 
@@ -119,8 +120,7 @@ We are going to make extensive use of the following:
   - [[file:doc/lesson-10.org][Lesson 10]] :: Re-Frame
   - Lesson 11 :: The word puzzle (part 1)
   - Lesson 12 :: The word puzzle (part 2)
-  - Lesson 13 :: Clojure as a lisp: macros [DEFER? SKIP?]
-
+  - [[file:doc/lesson-summary.org][Course summary]]
 
 * Assignments
 

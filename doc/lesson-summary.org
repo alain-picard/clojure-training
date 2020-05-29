@@ -1,0 +1,77 @@
+#+TITLE: What have we learned?
+#+AUTHOR:    Alain Picard
+#+EMAIL:     alain@blueridgeglobal.com.au
+#+REVEAL_THEME: solarized
+#+REVEAL_TRANS: none
+#+REVEAL_EXTRA_CSS: prezzo.css
+#+REVEAL_EXTRA_CSS: https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap
+#+OPTIONS: num:nil toc:nil
+#+OPTIONS: org_reveal_title_slide:nil
+
+
+* Lessons learned:
+
+** Philosophical
+#+ATTR_REVEAL: :frag (appear)
+  - /syntax/ is easy
+  - /functional/ is hard
+  - /simplicity/ is key
+  - /immutability/ rocks
+  - tooling matters
+  - It works isn't enough.  Can others understand it?
+
+** Basics
+#+ATTR_REVEAL: :frag (appear)
+  - Data driven.  Use maps.
+  - =maps= can act as functions, and so can =keywords=
+  - laziness, destructuring
+  - =atoms=, =agents=... and safely managing concurrent state
+  - Functions rule.
+    - decompose until each function does 1 thing and is testable.
+  - Namespaces
+    - exported functions over objects.
+
+** More advanced
+#+ATTR_REVEAL: :frag (appear)
+  - The joys of REPL driven development
+  - =clojurescript= : clojure in the browser!
+    - One syntax to rule them all
+  - =core.async= and communicating sequential processes
+  - =reagent= and =re-frame= are awesome!
+    - The UI as a pure view on application state
+
+** What we didn't cover
+#+ATTR_REVEAL: :frag (appear)
+  - protocols
+  - =clojure.spec=
+  - advanced clojurescript build and tooling
+    - using 3rd party =javascript= libraries
+  - performance aspects
+  - large scale design aspects
+  - a world of libraries
+
+
+* 
+:PROPERTIES:
+:reveal_background: ./Cigarette-ads.jpg
+:reveal_background_trans: slide
+:END:
+
+
+
+
+* Thank You All!
+
+  #+begin_quote
+  The road goes ever on and on,
+
+  Down from the door where it began.
+
+  Now far ahead the Road has gone,
+
+  And I must follow, if I can...
+
+  ---J.R.R. Tolkien
+  #+end_quote
+
+

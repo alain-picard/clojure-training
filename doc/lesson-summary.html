@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>What have we learned?</title>
+<meta name="author" content="(Alain Picard)"/>
+<style type="text/css">
+.underline { text-decoration: underline; }
+</style>
+<link rel="stylesheet" href="file:///home/ap/bin/reveal/css/reveal.css"/>
+
+<link rel="stylesheet" href="file:///home/ap/bin/reveal/css/theme/solarized.css" id="theme"/>
+
+<link rel="stylesheet" href="prezzo.css"/>
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap"/>
+
+<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+<script>
+    if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = 'file:///home/ap/bin/reveal/css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    }
+</script>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+<section id="sec-title-slide"><h1 class="title">What have we learned?</h1><h2 class="author">Alain Picard</h2><p class="date">Created: 2020-05-28 Thu 17:52</p>
+</section>
+
+
+<section>
+<section id="slide-orgfedaee5">
+<h2 id="orgfedaee5">Lessons learned:</h2>
+<div class="outline-text-2" id="text-orgfedaee5">
+</div>
+</section>
+<section id="slide-org0680f8a">
+<h3 id="org0680f8a">Philosophical</h3>
+<ul>
+<li class="fragment appear"><i>syntax</i> is easy</li>
+<li class="fragment appear"><i>functional</i> is hard</li>
+<li class="fragment appear"><i>simplicity</i> is key</li>
+<li class="fragment appear"><i>immutability</i> rocks</li>
+<li class="fragment appear">tooling matters</li>
+<li class="fragment appear">It works isn't enough.  Can others understand it?</li>
+
+</ul>
+
+</section>
+<section id="slide-org0cdc846">
+<h3 id="org0cdc846">Basics</h3>
+<ul>
+<li class="fragment appear">Data driven.  Use maps.</li>
+<li class="fragment appear"><code>maps</code> can act as functions, and so can <code>keywords</code></li>
+<li class="fragment appear">laziness, destructuring</li>
+<li class="fragment appear"><code>atoms</code>, <code>agents</code>&#x2026; and safely managing concurrent state</li>
+<li class="fragment appear">Functions rule.
+<ul>
+<li>decompose until each function does 1 thing and is testable.</li>
+
+</ul></li>
+<li class="fragment appear">Namespaces
+<ul>
+<li>exported functions over objects.</li>
+
+</ul></li>
+
+</ul>
+
+</section>
+<section id="slide-org3be67c1">
+<h3 id="org3be67c1">More advanced</h3>
+<ul>
+<li class="fragment appear">The joys of REPL driven development</li>
+<li class="fragment appear"><code>clojurescript</code> : clojure in the browser!
+<ul>
+<li>One syntax to rule them all</li>
+
+</ul></li>
+<li class="fragment appear"><code>core.async</code> and communicating sequential processes</li>
+<li class="fragment appear"><code>reagent</code> and <code>re-frame</code> are awesome!
+<ul>
+<li>The UI as a pure view on application state</li>
+
+</ul></li>
+
+</ul>
+
+</section>
+<section id="slide-orge1f1a0e">
+<h3 id="orge1f1a0e">What we didn't cover</h3>
+<ul>
+<li class="fragment appear">protocols</li>
+<li class="fragment appear"><code>clojure.spec</code></li>
+<li class="fragment appear">advanced clojurescript build and tooling
+<ul>
+<li>using 3rd party <code>javascript</code> libraries</li>
+
+</ul></li>
+<li class="fragment appear">performance aspects</li>
+<li class="fragment appear">large scale design aspects</li>
+<li class="fragment appear">a world of libraries</li>
+
+</ul>
+
+
+</section>
+</section>
+<section>
+<section id="slide-org4a99544" data-background="./Cigarette-ads.jpg" data-background-transition="slide">
+<h2 id="org4a99544"></h2>
+
+
+
+
+</section>
+</section>
+<section>
+<section id="slide-orgd9e17e7">
+<h2 id="orgd9e17e7">Thank You All!</h2>
+<blockquote nil>
+<p>
+The road goes ever on and on,
+</p>
+
+<p>
+Down from the door where it began.
+</p>
+
+<p>
+Now far ahead the Road has gone,
+</p>
+
+<p>
+And I must follow, if I can&#x2026;
+</p>
+
+<p>
+&#x2014;J.R.R. Tolkien
+</p>
+</blockquote>
+</section>
+</section>
+</div>
+</div>
+<script src="file:///home/ap/bin/reveal/js/reveal.js"></script>
+
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+
+controls: true,
+progress: true,
+history: false,
+center: true,
+slideNumber: 'c',
+rollingLinks: false,
+keyboard: true,
+overview: true,
+
+theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+transition: Reveal.getQueryHash().transition || 'none', // default/cube/page/concave/zoom/linear/fade/none
+transitionSpeed: 'default',
+multiplex: {
+    secret: '', // null if client
+    id: '', // id, obtained from socket.io server
+    url: '' // Location of socket.io server
+},
+
+// Optional libraries used to extend on reveal.js
+dependencies: [
+ { src: 'file:///home/ap/bin/reveal/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+ { src: 'file:///home/ap/bin/reveal/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: 'file:///home/ap/bin/reveal/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: 'file:///home/ap/bin/reveal/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+ { src: 'file:///home/ap/bin/reveal/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }]
+});
+</script>
+</body>
+</html>
